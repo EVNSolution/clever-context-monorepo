@@ -1,4 +1,4 @@
-# Design System UX Rules
+# 디자인 시스템 및 UX 규칙
 
 ## 목적
 

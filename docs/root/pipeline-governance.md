@@ -1,4 +1,4 @@
-# Pipeline Governance
+# 파이프라인 문맥 기준
 
 ## 범위
 

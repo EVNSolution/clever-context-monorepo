@@ -1,4 +1,4 @@
-# Architecture Principles
+# 아키텍처 원칙
 
 ## 기본 원칙
 

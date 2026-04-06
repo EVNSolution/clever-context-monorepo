@@ -1,4 +1,4 @@
-# Domain Glossary
+# 도메인 용어집
 
 ## 공통 용어
 

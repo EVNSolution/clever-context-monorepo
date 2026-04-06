@@ -1,4 +1,4 @@
-# Agent Runtime Governance
+# 에이전트 실행 기준
 
 ## 전제
 

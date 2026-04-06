@@ -1,4 +1,4 @@
-# Doc Governance
+# 문서 관리 기준
 
 ## 원칙
 

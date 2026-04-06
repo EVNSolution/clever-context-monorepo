@@ -1,4 +1,4 @@
-# Root Index
+# 공식 시작점
 
 이 문서는 `clever-context-monorepo`의 공식 시작점이다.
 

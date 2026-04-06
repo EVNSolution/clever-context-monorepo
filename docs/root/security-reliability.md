@@ -1,4 +1,4 @@
-# Security Reliability
+# 보안 및 안정성 기준
 
 ## 원칙
 
