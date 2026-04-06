@@ -6,7 +6,7 @@
 
 ## 위치
 
-- 서비스 정본 문서는 `docs/services/<service-name>/` 아래에 둔다.
+- 서비스 정본 문서는 [`docs/services/<service-name>/`](../services/) 아래에 둔다.
 - 서비스가 아직 정리되지 않았으면 먼저 target service를 확정한 뒤 문서를 만든다.
 
 ## 사용 기준
