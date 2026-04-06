@@ -1,0 +1,16 @@
+# Domain Glossary
+
+## 공통 용어
+
+- change id: 하나의 변경 단위를 식별하는 값
+- target repo: 변경이 반영되는 저장소
+- target service: 변경이 적용되는 서비스
+- spec: 기능과 동작 기준 문서
+- ui-spec: 화면, 상태, 상호작용 기준 문서
+- contract: 서비스 간 또는 전역 규칙의 약속
+- generated summary: 자동 생성된 요약 문서
+
+## 사용 기준
+
+- 용어는 문서마다 같은 의미로 사용한다.
+- 새로운 용어를 추가할 때는 먼저 이 문서를 갱신한다.

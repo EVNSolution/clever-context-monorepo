@@ -1,0 +1,17 @@
+# Pipeline Governance
+
+## 범위
+
+이 문서는 기능 구현 workflow 기준의 파이프라인 문맥만 다룬다.
+
+## 기준
+
+- 변경은 change id 기준으로 추적한다.
+- 대상 repo와 대상 service를 먼저 확정한 뒤 파이프라인 문맥을 읽는다.
+- spec, ui-spec, contracts, service docs가 맞지 않으면 구현을 진행하지 않는다.
+- 파이프라인별 세부 설정값은 서비스 문서에서 관리한다.
+
+## 제외
+
+- 서버 배포 절차 상세
+- 인프라 운영 매뉴얼
