@@ -22,9 +22,9 @@
 - 현재 세션에 필요한 문맥만 다시 읽어온다.
 - 사용자 세션이 바뀌면 대상 저장소와 대상 서비스도 다시 확인한다.
 
-## context scope
+## 문맥 범위
 
 - agent는 하나의 실행자다.
-- global과 local은 agent 종류가 아니라 context scope다.
+- global과 local은 agent 종류가 아니라 context 범위다.
 - global context는 전역 규칙, contracts, root 문서를 뜻한다.
 - local context는 현재 target repo, target service, change id 범위를 뜻한다.
