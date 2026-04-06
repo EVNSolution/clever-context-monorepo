@@ -35,6 +35,10 @@ agent는 하나의 실행자다. global과 local은 agent 종류가 아니라 �
 
 초기 서비스 목록은 비워 둔 상태로 시작한다. target service가 확정되면 `docs/services/index.md`의 명명 규칙과 `docs/services/service-template.md`를 기준으로 서비스 문서를 추가한다.
 
+## main 브랜치 운영 규칙
+
+현재 private repo에서는 GitHub branch protection과 rulesets가 막혀 있어 `main` 브랜치를 수기 PR 정책으로 운영한다. 기본값은 direct push 금지, 최소 1회 리뷰 확인, 예외 시 change id와 사유 기록이다. 상세 기준은 `docs/root/pipeline-governance.md`를 따른다.
+
 ## clever-change-control과의 관계
 
 `clever-change-control`은 변경 요청, 승인, rollout/rollback 흐름을 관리한다. 이 저장소는 그 흐름에서 참조하는 정본 문맥, 규칙, 용어, 계약을 관리한다.
