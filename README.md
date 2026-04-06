@@ -31,6 +31,10 @@
 
 agent는 하나의 실행자다. global과 local은 agent 종류가 아니라 문맥 범위를 뜻한다. global context는 전역 규칙과 공통 문서를, local context는 대상 저장소와 대상 서비스의 현재 변경 범위를 뜻한다.
 
+## services 시작 규칙
+
+초기 서비스 목록은 비워 둔 상태로 시작한다. target service가 확정되면 `docs/services/index.md`의 명명 규칙과 `docs/services/service-template.md`를 기준으로 서비스 문서를 추가한다.
+
 ## clever-change-control과의 관계
 
 `clever-change-control`은 변경 요청, 승인, rollout/rollback 흐름을 관리한다. 이 저장소는 그 흐름에서 참조하는 정본 문맥, 규칙, 용어, 계약을 관리한다.
