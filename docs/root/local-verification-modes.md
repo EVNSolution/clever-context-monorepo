@@ -11,7 +11,7 @@
 로컬 검증을 시작하기 전에 아래 세 질문을 이 순서대로 먼저 보낸다.
 
 1. `백엔드까지 같이 수정/검증할 건가요, 아니면 프론트만 빠르게 볼 건가요?`
-2. `데이터는 로컬 localhost를 볼 건가요, 아니면 원격 타깃을 볼 건가요? 원격이면 실제 프록시와 dev/staging 테스트 타깃 중 무엇을 볼 건가요?`
+2. `데이터는 로컬 localhost를 볼 건가요, 원격 실제 프록시를 볼 건가요, 아니면 원격 local-test(dev/staging) 타깃을 볼 건가요?`
 3. `2번에서 실제 프록시를 골랐다면, 실제 DB에 영향을 주는 CRUD를 허용하나요?`
 
 규칙:
@@ -32,9 +32,9 @@
 ### 프론트만 + 실제 프록시 + CRUD 비허용
 
 - `front-web-console/.env.local`을 쓰지 않는다
-- `front-web-console/.env.local-test` 또는 더 안전한 원격 타깃으로 전환한다
+- `front-web-console/.env.local-test` 또는 다른 안전한 타깃으로 전환한다
 
-### 프론트만 + safer remote target
+### 프론트만 + 원격 local-test(dev/staging) 타깃
 
 - `front-web-console/.env.local-test`
 - `npm run dev:local-test`
@@ -65,7 +65,7 @@
 ## env 파일 규칙
 
 - `.env.local`은 실제 프록시와 실데이터 확인 모드에만 쓴다
-- `.env.local-test`는 dev/staging 같은 더 안전한 타깃에 우선 쓴다
+- `.env.local-test`는 원격 local-test(dev/staging) 타깃에 쓴다
 - 원격 검증 중에도 사용자가 실데이터 CRUD를 허용하지 않으면 `.env.local`로 가지 않는다
 
 ## 8080 규칙
