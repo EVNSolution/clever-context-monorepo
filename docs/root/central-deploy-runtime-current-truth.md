@@ -33,6 +33,14 @@
 - 따라서 중앙 배포는 compose up 전에 `catalog/services.yaml`에 등록된 image-backed 서비스들의 `image_env`, `image_repository`, `image_registry_region`, `image_registry_account`를 읽고, 각 ECR 최신 태그로 `.deploy-image-state.env`를 먼저 채운다.
 - `required variable ... is missing a value` 류 오류는 우선 대상 서비스 버그가 아니라 host image-state bootstrap 누락으로 본다.
 
+## source deploy context 기준
+
+- source deploy wave는 대상 repo만 checkout 하지 않는다.
+- compose file에 등록된 `build.context` 경로들도 host에서 같이 맞춰야 한다.
+- 이때 `/srv/clever/*` 아래에 `.git` 없는 stale build context 디렉토리가 남아 있으면 단순 `git clone` 으로는 배포가 실패한다.
+- 중앙 배포는 이런 non-git build context dir를 먼저 제거하고 다시 clone/fetch 해서 self-heal 되도록 유지한다.
+- `destination path ... already exists and is not an empty directory` 류 오류는 source deploy context cleanup 누락으로 먼저 본다.
+
 ## 검증 기준
 
 - 중앙 배포 성공만으로 끝내지 않는다.
