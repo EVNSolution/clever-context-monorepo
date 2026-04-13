@@ -15,3 +15,8 @@
 - 이 문서는 링크 허브다.
 - 서비스 규칙 판단은 실제 서비스 문서에서 한다.
 - 새 서비스는 [`docs/services/service-template.md`](../services/service-template.md)를 기준으로 시작한다.
+
+## 등록된 서비스
+
+- [`service-account-access`](../services/service-account-access/index.md)
+  - 계정, 인증, 토큰, 접근 제어 정본
