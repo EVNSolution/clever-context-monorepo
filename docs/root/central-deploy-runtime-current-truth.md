@@ -50,6 +50,34 @@
   - 브라우저 콘솔 error가 없다.
   - 핵심 초기 API 요청이 200으로 응답한다.
 
+## 배포 완료 판단 기준
+
+- image build success, central deploy success, remote container restart success만으로 `배포 완료`로 판단하지 않는다.
+- 실제 변경이 API surface인 경우 public domain에서 변경된 endpoint contract를 직접 다시 확인한다.
+- 확인 항목은 최소 아래 둘이다.
+  - 새 route가 실제로 열리는지
+  - 기존 route 응답에 새 field가 실제로 포함되는지
+- deploy log에 새 image tag가 찍혀 있어도 public endpoint가 old response를 내리면 완료로 닫지 않는다.
+
+## contract probe 기준
+
+- backend hotfix나 schema 확장 배포 후에는 `변경된 endpoint`를 대상으로 contract probe를 남긴다.
+- probe는 배포 로그가 아니라 실제 public URL 기준으로 찍는다.
+- 인증이 필요한 endpoint면 실제 로그인 세션 또는 bearer token으로 확인한다.
+- 아래 같은 증상은 rollout mismatch로 본다.
+  - 새 route가 `404`
+  - 응답이 `200`이어도 새 field가 빠져 있음
+  - UI는 새 코드를 기대하는데 public API는 old shape를 반환함
+
+## rollout mismatch 대응
+
+- central deploy가 success여도 public contract probe가 실패하면 배포 완료 신호를 보내지 않는다.
+- 이 경우 원인을 추정해서 닫지 말고 아래 순서로 다시 좁힌다.
+  - remote host가 실제 어떤 image tag를 띄웠는지
+  - gateway/public path가 어느 runtime으로 라우팅되는지
+  - public API가 기대한 URL/serializer surface를 내리는지
+- 즉 `build success -> deploy success -> public contract success` 세 단계를 모두 통과해야 완료다.
+
 ## 제외
 
 - 서비스별 business smoke 시나리오
