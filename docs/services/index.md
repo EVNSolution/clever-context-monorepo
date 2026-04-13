@@ -6,9 +6,42 @@
 
 ## 초기 서비스 목록
 
-- 현재 초기 서비스 목록은 비워 둔다.
-- target service가 확정되기 전에는 서비스 문서를 미리 만들지 않는다.
-- 첫 서비스가 확정되면 아래 명명 규칙과 템플릿을 기준으로 디렉터리를 추가한다.
+- `clever-msa-platform/development/service-*` child repo를 기준으로 batch 반영했다.
+- target service가 추가되면 같은 규칙으로 문서를 확장한다.
+
+## 등록된 서비스
+
+### registry 계열
+- [`service-announcement-registry`](./service-announcement-registry/index.md)
+- [`service-attendance-registry`](./service-attendance-registry/index.md)
+- [`service-dispatch-registry`](./service-dispatch-registry/index.md)
+- [`service-organization-registry`](./service-organization-registry/index.md)
+- [`service-personnel-document-registry`](./service-personnel-document-registry/index.md)
+- [`service-region-registry`](./service-region-registry/index.md)
+- [`service-settlement-registry`](./service-settlement-registry/index.md)
+- [`service-support-registry`](./service-support-registry/index.md)
+- [`service-terminal-registry`](./service-terminal-registry/index.md)
+- [`service-vehicle-registry`](./service-vehicle-registry/index.md)
+
+### operations-view 계열
+- [`service-dispatch-operations-view`](./service-dispatch-operations-view/index.md)
+- [`service-driver-operations-view`](./service-driver-operations-view/index.md)
+- [`service-settlement-operations-view`](./service-settlement-operations-view/index.md)
+- [`service-vehicle-operations-view`](./service-vehicle-operations-view/index.md)
+
+### hub / listener / dead-letter
+- [`service-telemetry-dead-letter`](./service-telemetry-dead-letter/index.md)
+- [`service-telemetry-hub`](./service-telemetry-hub/index.md)
+- [`service-telemetry-listener`](./service-telemetry-listener/index.md)
+
+### 기타 service runtime
+- [`service-account-access`](./service-account-access/index.md)
+- [`service-delivery-record`](./service-delivery-record/index.md)
+- [`service-driver-profile`](./service-driver-profile/index.md)
+- [`service-notification-hub`](./service-notification-hub/index.md)
+- [`service-region-analytics`](./service-region-analytics/index.md)
+- [`service-settlement-payroll`](./service-settlement-payroll/index.md)
+- [`service-vehicle-assignment`](./service-vehicle-assignment/index.md)
 
 ## 서비스명 규칙
 

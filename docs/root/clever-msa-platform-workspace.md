@@ -68,3 +68,8 @@
 
 - 현재 사용 중인 editor/IDE 기준으로 “열려 있는 서비스 폴더”를 기계적으로 식별할 수 있는 표준 절차
 - `clever-context-monorepo` 안에서 platform workspace용 별도 `docs/workspaces/` 계층을 둘지 여부
+
+## Batch scanned services
+
+- `development/service-*` 전체를 batch 스캔해 `docs/services/<service-name>/index.md`를 생성했다.
+- 개별 child repo leaf 문서는 해당 repo의 README, 설정, URLConf, entrypoint, workflow 기준으로 작성했다.

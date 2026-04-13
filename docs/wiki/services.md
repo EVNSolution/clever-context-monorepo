@@ -8,7 +8,41 @@
 
 - 서비스 시작 기준은 [`docs/services/index.md`](../services/index.md)에 둔다.
 - 서비스 정본 문서는 [`docs/services/<service-name>/`](../services/) 아래에 둔다.
-- 서비스가 아직 정리되지 않았으면 먼저 target service를 확정한 뒤 문서를 만든다.
+- `clever-msa-platform` batch 스캔 기준 서비스 목록은 `development/service-*`다.
+
+## 분류별 링크
+
+### registry 계열
+- [`service-announcement-registry`](../services/service-announcement-registry/index.md)
+- [`service-attendance-registry`](../services/service-attendance-registry/index.md)
+- [`service-dispatch-registry`](../services/service-dispatch-registry/index.md)
+- [`service-organization-registry`](../services/service-organization-registry/index.md)
+- [`service-personnel-document-registry`](../services/service-personnel-document-registry/index.md)
+- [`service-region-registry`](../services/service-region-registry/index.md)
+- [`service-settlement-registry`](../services/service-settlement-registry/index.md)
+- [`service-support-registry`](../services/service-support-registry/index.md)
+- [`service-terminal-registry`](../services/service-terminal-registry/index.md)
+- [`service-vehicle-registry`](../services/service-vehicle-registry/index.md)
+
+### operations-view 계열
+- [`service-dispatch-operations-view`](../services/service-dispatch-operations-view/index.md)
+- [`service-driver-operations-view`](../services/service-driver-operations-view/index.md)
+- [`service-settlement-operations-view`](../services/service-settlement-operations-view/index.md)
+- [`service-vehicle-operations-view`](../services/service-vehicle-operations-view/index.md)
+
+### hub / listener / dead-letter
+- [`service-telemetry-dead-letter`](../services/service-telemetry-dead-letter/index.md)
+- [`service-telemetry-hub`](../services/service-telemetry-hub/index.md)
+- [`service-telemetry-listener`](../services/service-telemetry-listener/index.md)
+
+### 기타 service runtime
+- [`service-account-access`](../services/service-account-access/index.md)
+- [`service-delivery-record`](../services/service-delivery-record/index.md)
+- [`service-driver-profile`](../services/service-driver-profile/index.md)
+- [`service-notification-hub`](../services/service-notification-hub/index.md)
+- [`service-region-analytics`](../services/service-region-analytics/index.md)
+- [`service-settlement-payroll`](../services/service-settlement-payroll/index.md)
+- [`service-vehicle-assignment`](../services/service-vehicle-assignment/index.md)
 
 ## 사용 기준
 
