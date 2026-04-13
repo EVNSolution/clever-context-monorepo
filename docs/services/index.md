@@ -6,13 +6,9 @@
 
 ## 초기 서비스 목록
 
+- 현재 초기 서비스 목록은 비워 둔다.
 - target service가 확정되기 전에는 서비스 문서를 미리 만들지 않는다.
 - 첫 서비스가 확정되면 아래 명명 규칙과 템플릿을 기준으로 디렉터리를 추가한다.
-
-## 등록된 서비스
-
-- [`service-account-access`](./service-account-access/index.md)
-  - Django/DRF 기반 계정, 인증, 토큰, 접근 제어 정본
 
 ## 서비스명 규칙
 

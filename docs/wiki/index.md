@@ -8,6 +8,7 @@
 - [`docs/root/doc-governance.md`](../root/doc-governance.md)
 - [`docs/root/agent-runtime-governance.md`](../root/agent-runtime-governance.md)
 - [`docs/root/architecture-principles.md`](../root/architecture-principles.md)
+- [`docs/root/clever-msa-platform-workspace.md`](../root/clever-msa-platform-workspace.md)
 - [`docs/root/security-reliability.md`](../root/security-reliability.md)
 - [`docs/root/local-verification-modes.md`](../root/local-verification-modes.md)
 - [`docs/root/ui-implementation-lessons.md`](../root/ui-implementation-lessons.md)
