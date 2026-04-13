@@ -7,11 +7,16 @@
 - [`docs/root/index.md`](../root/index.md)
 - [`docs/root/doc-governance.md`](../root/doc-governance.md)
 - [`docs/root/agent-runtime-governance.md`](../root/agent-runtime-governance.md)
+- [`docs/root/msa-saas-replication-governance.md`](../root/msa-saas-replication-governance.md)
 - [`docs/root/architecture-principles.md`](../root/architecture-principles.md)
 - [`docs/root/clever-msa-platform-workspace.md`](../root/clever-msa-platform-workspace.md)
 - [`docs/root/security-reliability.md`](../root/security-reliability.md)
 - [`docs/root/local-verification-modes.md`](../root/local-verification-modes.md)
 - [`docs/root/ui-implementation-lessons.md`](../root/ui-implementation-lessons.md)
+
+## MSA SaaS 복제형 작업
+
+MSA 기반 SaaS 복제, 고객사별 변형, 컨테이너별 이미지 운영을 다루는 작업이면 먼저 [`docs/root/msa-saas-replication-governance.md`](../root/msa-saas-replication-governance.md)를 읽고, 이후 target service가 정해지면 `docs/services/<service-name>/` 아래 문서로 내려간다.
 
 ## services 문서 위치
 

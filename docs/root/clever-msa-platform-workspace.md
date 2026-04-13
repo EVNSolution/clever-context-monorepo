@@ -11,6 +11,8 @@
   - `WORKSPACE.md`
   - `repo-map.md`
   - `AGENTS.md`
+- MSA SaaS 복제형 분기 기준
+  - `docs/root/msa-saas-replication-governance.md`
 
 ## 이 workspace가 소유하는 것
 
@@ -60,6 +62,7 @@
 
 ## LLM 위키 반영 기준
 
+- MSA/SaaS 복제형 작업의 전역 분기 기준은 먼저 `docs/root/msa-saas-replication-governance.md`에서 확인한다.
 - target service가 명시적으로 확정되지 않았으면 개별 서비스 leaf 문서를 임의로 만들지 않는다.
 - 이런 경우에는 먼저 이 workspace owner 문서처럼 root 문맥을 올리고, 이후 명시적으로 지정된 child repo 단위로 서비스 문서를 작성한다.
 - `docs/wiki`는 탐색용 허브이고 최종 판단은 root 문서와 service 문서로 되돌아간다.

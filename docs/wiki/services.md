@@ -10,6 +10,12 @@
 - 서비스 정본 문서는 [`docs/services/<service-name>/`](../services/) 아래에 둔다.
 - `clever-msa-platform` batch 스캔 기준 서비스 목록은 `development/service-*`다.
 
+## MSA SaaS 복제형 접근
+
+- MSA 기반 SaaS 복제나 고객사별 변형 작업이면 먼저 [`docs/root/msa-saas-replication-governance.md`](../root/msa-saas-replication-governance.md)를 읽는다.
+- target service가 정해진 뒤에만 해당 service leaf 문서로 내려간다.
+- service leaf 문서는 전역 규칙을 다시 쓰지 않고, 고객사별 variation과 운영 차이만 추가로 적는다.
+
 ## 분류별 링크
 
 ### registry 계열
