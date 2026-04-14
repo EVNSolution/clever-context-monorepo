@@ -54,7 +54,9 @@
 - 각 서비스는 `docs/services/<service-name>/index.md`를 시작 문서로 둔다.
 - 필요하면 같은 디렉터리에 API, 의존성, 운영 메모를 추가한다.
 - 공통 규칙은 root와 contracts를 참조하고, 서비스 고유 규칙만 서비스 문서에 둔다.
+- template lineage와 deploy profile은 service 문서에 남기되, 전역 원칙은 `docs/root/template-harness-governance.md`와 `docs/root/deploy-template-governance.md`를 참조한다.
 
 ## 시작 템플릿
 
 - 새 서비스 문서는 [`docs/services/service-template.md`](./service-template.md)를 복사해서 시작한다.
+- 템플릿 후보 자체는 [`docs/templates/index.md`](../templates/index.md)에서 고른다.

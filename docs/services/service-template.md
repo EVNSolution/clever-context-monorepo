@@ -17,11 +17,30 @@
 
 - 참조하는 다른 서비스나 공통 계약
 
+## Template Harness / Lineage
+
+- `template_id`: <template-id>
+- `template_version`: <version>
+- `deploy_profile`: <deploy-profile>
+- `override_scope`: <override-scope>
+- `lifecycle_state`: <active|legacy|deprecated|retiring>
+- 전역 기준 문서:
+  - `docs/root/template-harness-governance.md`
+  - `docs/root/deploy-template-governance.md`
+
 ## SaaS 복제/고객사별 변형 메모
 
 - 공통 템플릿과 고객사별 override 경계
 - 고객사별로 달라지는 이미지, 설정, 외부 연동
 - 전역 기준 문서: `docs/root/msa-saas-replication-governance.md`
+
+## 배포/운영 메모
+
+- 서비스 고유 deploy caveat
+- 서비스 고유 env/secret 범주
+- rollout/rollback 시 이 서비스에서만 확인할 항목
+- post-deploy contract probe 대상
+- 전역 기준 문서: `docs/root/deploy-template-governance.md`
 
 ## 변경 시 확인 항목
 

@@ -13,6 +13,8 @@
 ## MSA SaaS 복제형 접근
 
 - MSA 기반 SaaS 복제나 고객사별 변형 작업이면 먼저 [`docs/root/msa-saas-replication-governance.md`](../root/msa-saas-replication-governance.md)를 읽는다.
+- 템플릿 기반 신규 시작이나 lineage 확인이 필요하면 [`docs/root/template-harness-governance.md`](../root/template-harness-governance.md)와 [`docs/templates/index.md`](../templates/index.md)를 같이 읽는다.
+- 공통 deploy baseline은 [`docs/root/deploy-template-governance.md`](../root/deploy-template-governance.md)를 먼저 본다.
 - target service가 정해진 뒤에만 해당 service leaf 문서로 내려간다.
 - service leaf 문서는 전역 규칙을 다시 쓰지 않고, 고객사별 variation과 운영 차이만 추가로 적는다.
 
@@ -55,3 +57,4 @@
 - 이 문서는 링크 허브다.
 - 서비스 규칙 판단은 실제 서비스 문서에서 한다.
 - 새 서비스는 [`docs/services/service-template.md`](../services/service-template.md)를 기준으로 시작한다.
+- template registry 판단은 [`docs/templates/index.md`](../templates/index.md)와 각 version 문서에서 한다.

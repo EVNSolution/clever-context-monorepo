@@ -1,0 +1,16 @@
+# common
+APP_NAME=<service-name>
+DEPLOY_PROFILE=<deploy-profile>
+IMAGE_TAG=<image-tag>
+
+# runtime
+PUBLIC_BASE_URL=<public-base-url>
+API_BASE_URL=<api-base-url>
+
+# secrets
+DB_URL=<secret-reference>
+JWT_SECRET=<secret-reference>
+
+# overrides
+CUSTOMER_KEY=<customer-key-if-needed>
+EXTERNAL_INTEGRATION_MODE=<shared-or-customer-specific>

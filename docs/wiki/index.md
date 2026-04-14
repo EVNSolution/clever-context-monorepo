@@ -8,6 +8,8 @@
 - [`docs/root/doc-governance.md`](../root/doc-governance.md)
 - [`docs/root/agent-runtime-governance.md`](../root/agent-runtime-governance.md)
 - [`docs/root/msa-saas-replication-governance.md`](../root/msa-saas-replication-governance.md)
+- [`docs/root/template-harness-governance.md`](../root/template-harness-governance.md)
+- [`docs/root/deploy-template-governance.md`](../root/deploy-template-governance.md)
 - [`docs/root/architecture-principles.md`](../root/architecture-principles.md)
 - [`docs/root/clever-msa-platform-workspace.md`](../root/clever-msa-platform-workspace.md)
 - [`docs/root/security-reliability.md`](../root/security-reliability.md)
@@ -21,6 +23,10 @@ MSA 기반 SaaS 복제, 고객사별 변형, 컨테이너별 이미지 운영을
 ## services 문서 위치
 
 서비스별 문서는 [`docs/services/`](../services/) 아래에서 찾는다.
+
+## templates 위치
+
+템플릿 registry와 version 문서는 [`docs/templates/`](../templates/) 아래에서 찾는다.
 
 ## contracts 위치
 
