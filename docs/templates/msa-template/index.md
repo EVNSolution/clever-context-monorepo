@@ -8,13 +8,24 @@
 
 - `template_id`: `msa-template`
 - `current_version`: `v1`
-- `status`: `recommended`
+- `status`: `candidate`
 - `use_case`: multi-repo MSA bootstrap with archetype-specific repo packages
 - `deploy_profile`: `image-build-once-and-promote`
 - `summary`: 운영, 인프라, 프론트, 게이트웨이, 서비스 repo archetype을 하나의 family로 설명하는 package-style template entry
 - `bootstrap_rules`: family 문서는 archetype과 metadata만 제공하고, 실제 business content나 runtime truth는 싣지 않는다.
 - `allowed_override_boundary`: org naming, repository naming, CI vendor, deploy environment naming, package manager 선택은 조정 가능하다.
 - `known_constraints`: family entry만으로는 scaffold 파일을 직접 제공하지 않으며, leaf archetype마다 후속 concrete asset이 필요할 수 있다.
+
+## 현재 상태
+
+현재 `msa-template`는 실행형 템플릿이 아니라 family 설명용 registry entry다.
+
+즉 아래 상태로 본다.
+
+- GitHub template repo는 아직 없다.
+- concrete scaffold asset도 아직 없다.
+- 에이전트가 바로 선택해서 repo bootstrap에 사용하는 템플릿은 아직 아니다.
+- 지금 단계에서 이 문서의 역할은 archetype family와 metadata 경계를 설명하는 것이다.
 
 ## 채택 적합 조건
 
@@ -31,6 +42,7 @@
 - 단일 repo scaffold 하나만 필요한 경우
 - business domain 예제나 sample content가 템플릿에 같이 들어가야 하는 경우
 - 현재 runtime/operator truth를 그대로 템플릿 문서에 섞으려는 경우
+- 지금 바로 에이전트 bootstrap에서 selectable template로 써야 하는 경우
 
 ## family에 포함되는 leaf template
 
