@@ -16,6 +16,17 @@
 - `allowed_override_boundary`: org naming, repository naming, CI vendor, deploy environment naming, package manager 선택은 조정 가능하다.
 - `known_constraints`: family entry만으로는 scaffold 파일을 직접 제공하지 않으며, leaf archetype마다 후속 concrete asset이 필요할 수 있다.
 
+## 배포 템플릿 약속
+
+이 family는 deploy 관점에서 아래 원칙을 패키지 단위 baseline으로 본다.
+
+- build와 deploy를 분리한다.
+- immutable artifact를 기준으로 verification lane과 release lane을 닫는다.
+- env/secret, health path, port, upstream name 같은 deploy contract를 문서와 template boundary로 고정한다.
+- 반복되는 deploy wiring 오류는 root deploy governance와 leaf archetype baseline이 먼저 막아야 한다.
+
+즉 이 family는 \"앱이 바뀌면 배포도 매번 새로 해석한다\"가 아니라, \"deploy contract가 안 바뀌는 앱 변화는 같은 deploy template가 흡수한다\"를 목표로 한다.
+
 ## 현재 상태
 
 현재 `msa-template`는 실행형 템플릿이 아니라 family 설명용 registry entry다.
@@ -26,6 +37,12 @@
 - concrete scaffold asset도 아직 없다.
 - 에이전트가 바로 선택해서 repo bootstrap에 사용하는 템플릿은 아직 아니다.
 - 지금 단계에서 이 문서의 역할은 archetype family와 metadata 경계를 설명하는 것이다.
+
+하지만 deploy 관점에서의 baseline 의미는 이미 있다.
+
+- 어떤 종류의 앱 변화는 template update 없이 흡수돼야 하는지
+- 어떤 변화는 deploy contract 변경으로 취급해야 하는지
+- 같은 배포 실수를 반복하지 않으려면 무엇을 root governance로 끌어올려야 하는지
 
 ## 채택 적합 조건
 
@@ -94,6 +111,33 @@
 - rollout history나 운영 incident 기록
 - 특정 서비스의 현재 canonical runtime truth
 
+대신 deploy 안전성에 대한 추상 규칙은 넣는다.
+
+- 어떤 변화가 app-only 인지
+- 어떤 변화가 deploy-affecting 인지
+- 반복되는 deploy 실수는 template/governance가 막아야 한다는 원칙
+
+이 수준은 runtime history가 아니라 template contract 설명으로 본다.
+
+## 보장 범위와 비보장 범위
+
+이 family가 암묵적으로 약속하는 범위는 아래다.
+
+- 앱 내부 변화가 기존 deploy contract를 유지하면, 같은 deploy template를 계속 재사용할 수 있어야 한다.
+- build/deploy 분리, immutable artifact, preflight, post-deploy verification 같은 배포 기본선은 다시 흔들리지 않아야 한다.
+
+이 family가 약속하지 않는 범위는 아래다.
+
+- business logic 자체의 무오류
+- migration/seed/data correctness
+- 새 runtime dependency를 추가했는데 문서를 안 바꾼 경우
+- port, health path, env, secret, startup order 같은 contract가 바뀌었는데 template를 안 올린 경우
+
+즉 정직한 표현은 \"다시는 오류가 안 난다\"가 아니라 아래다.
+
+- pure app-only change라면 deploy wiring 오류가 반복되지 않아야 한다.
+- deploy-affecting change라면 template 또는 governance update가 같이 필요하다.
+
 ## future public template readiness
 
 이 family는 나중에 GitHub public template 계열로 옮길 수 있어야 한다. 그래서 문서 단계부터 아래를 지킨다.
@@ -102,6 +146,12 @@
 - placeholder-safe metadata 사용
 - private repo나 org 내부 운영 세부에 묶이지 않는 설명 사용
 - scaffold package로 확장해도 그대로 재사용 가능한 archetype naming 유지
+
+public template로 나갈 때도 같은 원칙을 유지한다.
+
+- zero-error promise는 쓰지 않는다.
+- 대신 guarantee boundary를 쓴다.
+- template가 막는 오류와 못 막는 오류를 분리해서 적는다.
 
 ## 버전 문서
 

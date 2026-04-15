@@ -43,6 +43,50 @@
 - public URL에서 contract probe를 다시 확인해야 한다.
 - 공통 기준은 root 문서가 가진다. 서비스 문서는 probe가 필요한 구체 endpoint나 caveat만 추가한다.
 
+## 템플릿이 막아야 하는 오류와 못 막는 오류
+
+배포 템플릿은 모든 오류를 없애는 장치가 아니다. 대신 반복되는 배포 class 오류를 줄이는 정본이다.
+
+핵심 기준은 아래다.
+
+- 앱 내부 변화가 deploy contract를 바꾸지 않으면, 배포 템플릿은 그 변화를 그대로 수용해야 한다.
+- 앱 내부 변화가 deploy contract를 바꾸면, 그 순간 그건 더 이상 pure app-only change가 아니다.
+
+여기서 deploy contract는 아래를 뜻한다.
+
+- image build와 deploy의 역할 분리
+- immutable artifact 사용
+- env/secret category
+- health check path
+- port와 upstream name
+- startup ordering과 bootstrap prerequisite
+- resource sizing 전제
+
+즉 아래 같은 변화는 app-only change로 본다.
+
+- UI 텍스트, 레이아웃, 화면 내부 로직
+- API handler 내부 계산식
+- 기존 env와 port 안에서의 business rule 변경
+- 기존 DB schema와 runtime contract를 안 건드리는 내부 refactor
+
+반대로 아래는 deploy-affecting change로 본다.
+
+- 새 env 또는 secret 추가
+- health path 변경
+- port 또는 upstream name 변경
+- image architecture 변경
+- startup order 의존성 추가
+- DB bootstrap, migration, seed prerequisite 추가
+- host size 또는 runtime lane 크기 전제 변경
+
+첫 번째 범주의 변화는 템플릿이 반복 오류 없이 흡수해야 한다. 두 번째 범주의 변화는 템플릿/거버넌스/서비스 문서를 같이 바꾸지 않으면 다시 배포 오류가 생길 수 있다.
+
+따라서 정직한 약속은 아래다.
+
+- 배포 템플릿은 반복적인 deploy wiring 실수를 줄이는 데 책임이 있다.
+- 템플릿이 있다고 해서 app contract 변화까지 자동으로 안전해지는 것은 아니다.
+- contract 변화가 생기면 template update 또는 migration 기록이 같이 따라와야 한다.
+
 ## root 문서와 service 문서의 경계
 
 ### root에 둘 것

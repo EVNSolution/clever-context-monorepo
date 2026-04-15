@@ -31,7 +31,7 @@
 - use_case: package-style MSA template family registry
 - deploy_profile: `image-build-once-and-promote`
 - summary: 운영, 인프라, 프론트, 게이트웨이, 서비스 archetype을 묶어 설명하는 generic MSA template family 문서
-- note: 현재는 family 설명용 registry entry이며, GitHub template repo 또는 concrete scaffold가 준비되기 전까지는 에이전트 직접 선택 대상이 아니다.
+- note: 현재는 family 설명용 registry entry이며, GitHub template repo 또는 concrete scaffold가 준비되기 전까지는 에이전트 직접 선택 대상이 아니다. 다만 deploy-safe baseline, guarantee boundary, app-only change와 deploy-affecting change의 구분은 이 family에서 먼저 읽는다.
 - 문서:
   - [`docs/templates/msa-template/index.md`](./msa-template/index.md)
   - [`docs/templates/msa-template/versions/v1.md`](./msa-template/versions/v1.md)
