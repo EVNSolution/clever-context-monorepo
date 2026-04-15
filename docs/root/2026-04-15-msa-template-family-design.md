@@ -91,6 +91,17 @@
 
 `docs/templates`에는 `msa-template` family entry를 두고, 실제 채택과 lineage 추적은 그 아래 leaf template로 분리한다.
 
+## template-only 원칙
+
+이 family entry는 템플릿 registry 문서다. 따라서 아래 원칙을 강하게 지킨다.
+
+1. business content를 넣지 않는다.
+2. 특정 고객/조직 전용 naming, URL, ARN, account 값을 넣지 않는다.
+3. 현재 운영 truth, runbook, rollout caveat를 템플릿 문서에 섞지 않는다.
+4. 서비스 예시는 archetype 설명용으로만 취급하고, template payload로 고정하지 않는다.
+
+즉 이 문서와 이후 registry entry는 "무엇을 복제 가능한 템플릿 단위로 볼 것인가"만 설명해야 한다.
+
 ## 목표 구조
 
 ### registry entry
@@ -137,7 +148,7 @@ family 문서 안에서 아래 leaf template를 정의한다.
 
 ### `msa-ops-orchestration-template`
 
-- 대상: `integration-local-stack` 같은 orchestration repo
+- 대상: orchestration repo archetype
 - 기준 자산:
   - `compose/`
   - `infra/`
@@ -148,7 +159,7 @@ family 문서 안에서 아래 leaf template를 정의한다.
 
 ### `msa-infra-ecs-template`
 
-- 대상: `infra-ev-dashboard-platform`
+- 대상: ECS/CDK infra repo archetype
 - 기준 자산:
   - `bin/`
   - `lib/`
@@ -159,7 +170,7 @@ family 문서 안에서 아래 leaf template를 정의한다.
 
 ### `msa-front-web-template`
 
-- 대상: `front-web-console`
+- 대상: frontend runtime repo archetype
 - 기준 자산:
   - `.env.local.example`
   - `.env.local-test.example`
@@ -170,7 +181,7 @@ family 문서 안에서 아래 leaf template를 정의한다.
 
 ### `msa-edge-gateway-template`
 
-- 대상: `edge-api-gateway`
+- 대상: edge gateway repo archetype
 - 기준 자산:
   - `nginx.conf`
   - `tests/`
@@ -181,7 +192,7 @@ family 문서 안에서 아래 leaf template를 정의한다.
 
 ### `msa-service-django-template`
 
-- 대상: write/registry 계열 `service-*`
+- 대상: write/registry 계열 service repo archetype
 - 기준 자산:
   - `manage.py`
   - `config/`
@@ -195,13 +206,23 @@ family 문서 안에서 아래 leaf template를 정의한다.
 
 ### `msa-service-read-model-template`
 
-- 대상: `*-operations-view`, `service-region-analytics`
+- 대상: read-model service repo archetype
 - 기준 자산은 django service와 유사하되, README에서 read-only boundary와 upstream dependency를 더 강하게 명시한다.
 
 ### `msa-service-special-runtime-template`
 
-- 대상: `service-notification-hub`, `service-telemetry-*`
+- 대상: special runtime service repo archetype
 - 기준 자산은 django service와 유사하되, worker-only / dead-letter / ingest hub 같은 runtime role을 별도 규칙으로 가진다.
+
+## future public template readiness
+
+이 family는 이후 GitHub public template 계열로 확장될 수 있어야 한다. 그래서 registry 단계부터 아래를 보장한다.
+
+1. 문서는 vendor-neutral 또는 domain-neutral wording을 우선 사용한다.
+2. private repo 이름, internal-only URL, secret naming, private org workflow를 template contract로 넣지 않는다.
+3. placeholder는 public-safe 값으로 유지한다.
+4. template 문서는 archetype, metadata, allowed override boundary만 다루고, internal migration history는 제외한다.
+5. 실제 public template asset으로 옮길 때도 문서 제목과 leaf naming을 그대로 재사용할 수 있어야 한다.
 
 ## 문서 배치 규칙
 
@@ -258,10 +279,11 @@ docs/templates/msa-front-web-template/
 
 ## 구현 순서
 
-1. `docs/templates/msa-template/index.md` 추가
-2. `docs/templates/msa-template/versions/v1.md` 추가
-3. `docs/templates/index.md`에 `msa-template` registry entry 추가
-4. 필요하면 `clever-agent-project`와 `clever-change-control` 문서에서 새 family entry를 참조하도록 연결
+1. `docs/root`에 implementation plan 문서 추가
+2. `docs/templates/msa-template/index.md` 추가
+3. `docs/templates/msa-template/versions/v1.md` 추가
+4. `docs/templates/index.md`에 `msa-template` registry entry 추가
+5. 필요하면 `clever-agent-project`와 `clever-change-control` 문서에서 새 family entry를 참조하도록 연결
 
 ## 완료 기준
 

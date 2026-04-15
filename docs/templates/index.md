@@ -24,6 +24,17 @@
 
 ## 등록된 템플릿
 
+### `msa-template`
+
+- status: `recommended`
+- latest version: `v1`
+- use_case: package-style MSA template family registry
+- deploy_profile: `image-build-once-and-promote`
+- summary: 운영, 인프라, 프론트, 게이트웨이, 서비스 archetype을 묶어 설명하는 generic MSA template family
+- 문서:
+  - [`docs/templates/msa-template/index.md`](./msa-template/index.md)
+  - [`docs/templates/msa-template/versions/v1.md`](./msa-template/versions/v1.md)
+
 ### `test-erik-project-template`
 
 - status: `recommended`
