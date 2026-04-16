@@ -27,6 +27,26 @@
 
 즉 이 family는 \"앱이 바뀌면 배포도 매번 새로 해석한다\"가 아니라, \"deploy contract가 안 바뀌는 앱 변화는 같은 deploy template가 흡수한다\"를 목표로 한다.
 
+## 현재 proof에서 끌어올린 공통 제약
+
+이 family는 특정 서비스의 현재 runtime truth를 직접 담지 않지만, 이미 운영 proof에서 반복 확인된 제약은 family 차원의 배포 원칙으로 끌어올린다.
+
+- stack/bootstrap lane과 warm-host partial lane을 분리해서 기록한다.
+- partial deploy를 말할 때는 `같은 host에서 서비스만 in-place 반영`인지, `새 host에서 누적 상태를 다시 bootstrap`하는지 구분해서 적는다.
+- burstable host는 메모리 snapshot만으로 판단하지 않는다.
+  - bootstrap 구간 CPU 평균/최대
+  - `CPUCreditBalance`
+  - `CPUSurplusCreditBalance`
+  - post-smoke steady-state CPU
+  를 함께 남긴다.
+- backend worker 수는 app tuning이 아니라 deploy sizing 입력값으로 본다.
+- strict full과 `full-minus-listener` 같은 broker/worker 제외형 proof는 구분해서 적는다.
+- partial deploy proof에는 runner 권한, host-side drift gate, rollback 가능 상태 같은 운영 조건을 같이 기록한다.
+
+구체적인 현재 증거와 숫자는 template 정본이 아니라 내부 wiki 요약에 둔다.
+
+- [`docs/wiki/ev-dashboard-runtime-proof.md`](../../wiki/ev-dashboard-runtime-proof.md)
+
 ## 현재 상태
 
 현재 `msa-template`는 실행형 템플릿이 아니라 family 설명용 registry entry다.

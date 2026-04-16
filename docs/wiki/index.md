@@ -28,6 +28,12 @@ MSA 기반 SaaS 복제, 고객사별 변형, 컨테이너별 이미지 운영을
 
 템플릿 registry와 version 문서는 [`docs/templates/`](../templates/) 아래에서 찾는다.
 
+## runtime proof 요약 위치
+
+현재 내부 runtime proof와 host sizing 요약은 아래 문서에서 찾는다.
+
+- [`docs/wiki/ev-dashboard-runtime-proof.md`](./ev-dashboard-runtime-proof.md)
+
 ## contracts 위치
 
 전역 계약과 공통 규칙은 [`contracts/`](../../contracts/)에서 찾는다.

@@ -38,6 +38,8 @@
 
 - `front-web-console/.env.local-test`
 - `npm run dev:local-test`
+- 현재 dev remote target 기본값은 `https://clever-hub-dev-public-alb-709320164.ap-northeast-2.elb.amazonaws.com`
+- 사용자가 별도 실데이터 확인을 명시하지 않으면 프론트 테스트 기본은 이 모드를 우선한다
 
 ### 백엔드 개발 + 로컬 runtime
 
@@ -66,6 +68,8 @@
 
 - `.env.local`은 실제 프록시와 실데이터 확인 모드에만 쓴다
 - `.env.local-test`는 원격 local-test(dev/staging) 타깃에 쓴다
+- 기본 테스트/시연은 `.env.local-test` 기준으로 본다
+- `hub.evnlogistics.com`은 배포 검증과 실데이터 확인용으로만 쓴다
 - 원격 검증 중에도 사용자가 실데이터 CRUD를 허용하지 않으면 `.env.local`로 가지 않는다
 
 ## 8080 규칙
