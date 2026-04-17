@@ -39,10 +39,10 @@
 - direct SSM CLI 경로는 `PYTHONPATH=/opt/ev-dashboard/bootstrap` 필요
 - internal-only backend는 public host-port service와 다른 drift rule이 필요
 
-### cumulative expand / full-minus-listener
+### cumulative expand / current full
 
 - `strict full`은 아직 아님
-- 현재 proven 최대치는 `full-minus-listener`
+- 현재 proven 최대치는 현재 운영 `full`
 - meaning:
   - `core-entry`
   - `people-and-assets`
@@ -58,7 +58,7 @@
 strict full이 아직 아닌 이유:
 
 - `service-telemetry-listener`에 필요한 `TELEMETRY_LISTENER_MQTT_HOST`와 실제 broker truth가 아직 닫히지 않음
-- 따라서 현재 표현은 `full-minus-listener`가 맞다
+- 따라서 현재 proof는 listener-disabled 상태의 현재 운영 `full`로 적는다
 
 ## host sizing evidence
 
@@ -81,7 +81,7 @@ strict full이 아직 아닌 이유:
 ### `t3.medium`
 
 - 성공 run: `24508999204`
-- scope: `full-minus-listener`
+- scope: current `full`
 - backend `GUNICORN_WORKERS=1`
 
 bootstrap/create-smoke 구간:
@@ -99,14 +99,14 @@ post-smoke settled snapshot:
 
 요약:
 
-- `t3.medium`은 현재 `full-minus-listener`까지 proven
+- `t3.medium`은 현재 운영 `full`까지 proven
 - 다만 tight minimum이지 comfortable headroom은 아님
 - bootstrap은 burst-heavy, steady-state는 low CPU
 
 ### `t3.large`
 
 - 17-service prod-like proof 있음
-- 이후 `full-minus-listener`도 proof됨
+- 이후 현재 운영 `full`도 proof됨
 
 17-service proof:
 
@@ -114,7 +114,7 @@ post-smoke settled snapshot:
 - deploy/smoke CPU average about `53.6%`
 - peak about `84.4%`
 
-`full-minus-listener` proof:
+current `full` proof:
 
 - 성공 run: `24506332677`
 - post-smoke snapshot about `2188 MiB used / 5334 MiB available`

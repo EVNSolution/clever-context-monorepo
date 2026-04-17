@@ -40,7 +40,7 @@
   - post-smoke steady-state CPU
   를 함께 남긴다.
 - backend worker 수는 app tuning이 아니라 deploy sizing 입력값으로 본다.
-- strict full과 `full-minus-listener` 같은 broker/worker 제외형 proof는 구분해서 적는다.
+- `strict full`과 현재 운영 `full`에서 아직 비활성 prerequisite가 남은 proof는 구분해서 적는다.
 - partial deploy proof에는 runner 권한, host-side drift gate, rollback 가능 상태 같은 운영 조건을 같이 기록한다.
 
 구체적인 현재 증거와 숫자는 template 정본이 아니라 내부 wiki 요약에 둔다.
