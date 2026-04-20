@@ -41,7 +41,7 @@
 ## repo 선택 기준
 
 - 아키텍처, migration, mapping, contract, rollout 작업은 `clever-msa-platform/docs/`를 먼저 본다.
-- local compose, env template, seed orchestration, smoke script는 `development/integration-local-stack/`를 본다.
+- local compose, env template, seed orchestration, smoke script는 `integration-local-stack`(out-of-band, root whitelist 바깥)를 본다.
 - gateway routing과 edge entry 동작은 `development/edge-api-gateway/`를 본다.
 - operator/admin UI는 해당 `front-*` repo를 본다.
 - backend 동작은 해당 `service-*` repo를 본다.
@@ -59,6 +59,12 @@
 - target repo와 migration 상태는 `clever-msa-platform/repo-map.md`를 기준으로 확인한다.
 - 현재 runtime naming, compose service, gateway prefix는 `clever-msa-platform/docs/mappings/current-runtime-inventory.md`를 기준으로 확인한다.
 - `service-vehicle-registry`, `service-settlement-registry`, `service-delivery-record`, `service-terminal-registry`, `service-telemetry-hub` 등 현재 active repo 경계는 platform docs 정본을 따른다.
+
+## 최근 플랫폼 상태 동기화
+
+- 동기화 시점: 2026-04-20
+- 최신 런타임 상태 위키: [`clever-msa-platform-current-runtime-status.md`](../wiki/clever-msa-platform-current-runtime-status.md)
+- 기준 문서: `WORKSPACE.md`, `repo-map.md`, `docs/mappings/current-runtime-inventory.md`
 
 ## LLM 위키 반영 기준
 

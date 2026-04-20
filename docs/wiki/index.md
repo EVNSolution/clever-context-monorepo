@@ -33,6 +33,7 @@ MSA 기반 SaaS 복제, 고객사별 변형, 컨테이너별 이미지 운영을
 현재 내부 runtime proof와 host sizing 요약은 아래 문서에서 찾는다.
 
 - [`docs/wiki/ev-dashboard-runtime-proof.md`](./ev-dashboard-runtime-proof.md)
+- [`docs/wiki/clever-msa-platform-current-runtime-status.md`](./clever-msa-platform-current-runtime-status.md)
 
 ## contracts 위치
 
