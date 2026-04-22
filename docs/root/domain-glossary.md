@@ -2,9 +2,10 @@
 
 ## 공통 용어
 
-- change id: 하나의 변경 단위를 식별하는 값
+- project-start issue #: root 작업 라인을 식별하는 canonical 시작 식별자
+- change id: 승인 후 scope가 고정된 실행 단위를 식별하는 값
 - target repo: 변경이 반영되는 저장소
-- target service: 변경이 적용되는 서비스
+- target service: 변경이 적용되는 서비스. 일반 intake에서는 후보 상태일 수 있다.
 - spec: 기능과 동작 기준 문서
 - ui-spec: 화면, 상태, 상호작용 기준 문서
 - contract: 서비스 간 또는 전역 규칙의 약속

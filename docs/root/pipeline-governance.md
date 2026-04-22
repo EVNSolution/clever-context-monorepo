@@ -6,8 +6,10 @@
 
 ## 기준
 
-- 변경은 change id 기준으로 추적한다.
-- 대상 repo와 대상 service를 먼저 확정한 뒤 파이프라인 문맥을 읽는다.
+- root 시작 라인은 `project-start issue #`로 추적한다.
+- scoped change, rollout, rollback은 `change id` 기준으로 추적한다.
+- 일반 intake에서는 candidate repo/service로 시작할 수 있다.
+- 구현이나 rollout을 시작하기 전에는 target repo와 target service를 확정한다.
 - spec, ui-spec, contracts, service docs가 맞지 않으면 구현을 진행하지 않는다.
 - 파이프라인별 세부 설정값은 서비스 문서에서 관리한다.
 

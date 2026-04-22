@@ -5,7 +5,8 @@
 - 서비스 경계는 명확하게 유지한다.
 - 공통 규칙은 `contracts` 또는 `docs/root`에 둔다.
 - 서비스 내부 결정은 `docs/services`에 둔다.
-- 변경 단위는 change id로 연결한다.
+- root 작업 라인은 `project-start issue #`로 연결한다.
+- scoped execution 단위는 `change id`로 연결한다.
 
 ## 문맥 해석
 

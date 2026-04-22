@@ -4,6 +4,36 @@
 
 이 저장소는 팀 에이전트 규칙 통합과 기능 구현 흐름에 필요한 정본 문맥을 관리하기 위한 저장소다.
 
+## 작업 시작 규칙
+
+일반적인 CLEVER 작업 시작은 이 저장소가 아니라 `clever-agent-project`에서 한다.
+
+즉 아래처럼 구분한다.
+
+- 작업 라인과 대상 저장소가 아직 정해지지 않은 일반 시작: `clever-agent-project`
+- 현재 `clever-context-monorepo` 자체를 수정하는 작업: 여기서 계속
+
+시작 전에 먼저 아래 명령으로 로컬 3저장소 상태를 확인한다.
+
+```bash
+python3 ../clever-agent-project/scripts/bootstrap_clever_work.py --cwd "$PWD" --workspace-check --json
+```
+
+현재 저장소 자체를 직접 수정하는 작업이면 아래처럼 유지보수 모드로 확인한다.
+
+```bash
+python3 ../clever-agent-project/scripts/bootstrap_clever_work.py --cwd "$PWD" --workspace-check --current-repo-maintenance --json
+```
+
+결과는 아래처럼 해석한다.
+
+- `proceed-with-hard-gate`: 로컬 상태가 정상이며 시작 절차를 진행할 수 있음
+- `current-repo-maintenance`: 현재 저장소 자체를 수정하는 세션이므로 여기서 계속
+- `switch-to-clever-agent-project`: 일반 시작이므로 `clever-agent-project`로 이동
+- `stop-and-fix-workspace`: 필요한 로컬 저장소 구성이 부족하므로 먼저 보완
+
+즉 이 저장소는 정본 해석용 저장소이지, 일반 시작의 기본 위치는 아니다.
+
 ## 디렉터리 역할
 
 - `docs/root`: 전역 규칙, 시작 순서, 공통 원칙의 정본
@@ -30,6 +60,8 @@
 ## agent와 context 범위
 
 agent는 하나의 실행자다. global과 local은 agent 종류가 아니라 문맥 범위를 뜻한다. global context는 전역 규칙과 공통 문서를, local context는 대상 저장소와 대상 서비스의 현재 변경 범위를 뜻한다.
+
+`project-start` root와 scoped execution의 authority 경계는 `docs/root/authority-boundaries.md`를 우선 기준으로 본다.
 
 ## services 시작 규칙
 
