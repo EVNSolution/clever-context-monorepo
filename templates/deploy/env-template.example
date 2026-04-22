@@ -1,16 +1,34 @@
-# common
-APP_NAME=<service-name>
-DEPLOY_PROFILE=<deploy-profile>
-IMAGE_TAG=<image-tag>
+# common identity
+APP_NAME=<service-or-workload-name>
+DEPLOY_PROFILE=image-build-once-central-release
 
-# runtime
+# image reference category
+IMAGE_REPOSITORY=<image-repository-reference>
+IMAGE_TAG=<immutable-image-tag>
+
+# runtime scope category
+WORKLOAD_NAME=<single-workload-or-service-name>
+WORKLOAD_SCOPE=<single-workload-or-bundle-member>
+RUNTIME_INVENTORY_KEY=<runtime-inventory-identifier>
+
+# runtime env category
 PUBLIC_BASE_URL=<public-base-url>
 API_BASE_URL=<api-base-url>
+HEALTH_PATH=<health-or-probe-path>
 
-# secrets
+# secret reference category
 DB_URL=<secret-reference>
 JWT_SECRET=<secret-reference>
 
-# overrides
+# monorepo single workload example
+MONOREPO_WORKLOAD_NAME=<app>
+MONOREPO_IMAGE_ENV=<app-image-env-name>
+
+# msa multiple workload example
+MSA_WORKLOAD_NAME=<service-name>
+MSA_BUNDLE_NAME=<release-bundle-name-if-needed>
+MSA_IMAGE_ENV=<service-image-env-name>
+
+# override category
 CUSTOMER_KEY=<customer-key-if-needed>
 EXTERNAL_INTEGRATION_MODE=<shared-or-customer-specific>

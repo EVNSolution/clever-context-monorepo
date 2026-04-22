@@ -6,7 +6,8 @@
 
 이 문서는 아래를 공통 기준으로 삼는다.
 
-- image build와 central deploy의 역할 분리
+- image build와 central release의 역할 분리
+- current deploy baseline의 template family 기준
 - env/secret 분리
 - rollout/rollback 기본 체크
 - post-deploy public contract probe
@@ -15,16 +16,38 @@
 ## SSOT 경계
 
 - 현재 중앙 배포 런타임 truth는 `docs/root/central-deploy-runtime-current-truth.md`를 우선 기준으로 본다.
+- current deploy baseline을 template lineage로 읽을 때는 `docs/templates/Clever-ODIC-deploy/` family를 먼저 본다.
 - 서비스 문서는 공통 배포 절차를 다시 쓰지 않고, 서비스 고유 차이만 적는다.
 - `templates/deploy/`는 root 규칙을 재사용하기 위한 boilerplate와 예시 자산을 둔다.
 
 ## 공통 deploy baseline
 
+현재 공통 deploy baseline은 `Clever-ODIC-deploy` family로 읽는다.
+
+이 baseline은 monorepo와 MSA를 서로 다른 deploy 방식으로 설명하지 않는다.
+
+- monorepo: single workload
+- MSA: multiple workloads
+
+둘 다 아래를 공유한다.
+
+- app repo는 image build만 담당
+- central release가 실제 deploy를 수행
+- runtime inventory가 workload scope를 고정
+- public contract probe까지 통과해야 release를 닫음
+
 ### build와 deploy의 역할
 
-- image-backed 서비스는 service repo에서 이미지를 만들고, 실제 배포는 중앙 배포 기준 repo에서 수행한다.
+- image-backed 서비스는 service repo에서 이미지를 만들고, 실제 배포는 central release 기준 repo에서 수행한다.
 - 배포 진입점과 fresh host 가정은 `docs/root/central-deploy-runtime-current-truth.md`를 따른다.
-- 서비스 문서는 build 자체를 설명하기보다, 해당 서비스의 deploy profile과 예외만 적는다.
+- 서비스 문서는 build 자체를 설명하기보다, 해당 서비스의 deploy profile과 workload 범위, 예외만 적는다.
+
+### runtime inventory와 workload scope
+
+- deploy scope는 호출한 사람이 임의로 정하지 않고 runtime inventory 기준으로 고정한다.
+- monorepo는 single workload로 inventory에 등록한다.
+- MSA는 multiple workload를 inventory와 bundle 기준으로 읽는다.
+- 서비스 문서에는 현재 서비스가 어떤 workload scope에 속하는지만 남긴다.
 
 ### env와 secret
 
@@ -91,7 +114,8 @@
 
 ### root에 둘 것
 
-- 중앙 배포의 공통 흐름
+- central release의 공통 흐름
+- current deploy baseline family 기준
 - remote git auth, image-state bootstrap, build context cleanup 같은 공통 runtime 기준
 - deploy success 후 contract probe 필수 규칙
 - template asset 사용법과 override 경계
@@ -99,6 +123,7 @@
 ### service 문서에 둘 것
 
 - 서비스 고유 deploy profile
+- 단일 workload인지 bundle 안의 일부 workload인지 같은 scope 차이
 - 서비스 고유 env/secret 범주
 - startup 시 migration이나 batch worker 같은 서비스 고유 caveat
 - customer-specific override 중 이 서비스에서만 의미 있는 차이
@@ -107,7 +132,7 @@
 
 `templates/deploy/`는 아래 자산으로 구성한다.
 
-- `README.md`: baseline과 override의 경계 설명
+- `README.md`: current deploy baseline과 override의 경계 설명
 - `checklist.md`: 배포 전/후 최소 확인 체크
 - `env-template.example`: 구조 예시
 - `override-guide.md`: 허용되는 customer-specific divergence 범위
@@ -128,6 +153,8 @@ customer-specific override는 아래처럼 나눠 적는다.
 
 ## 관련 문서
 
+- `docs/templates/Clever-ODIC-deploy/index.md`
+- `docs/templates/Clever-ODIC-deploy/versions/v1.md`
 - `docs/root/central-deploy-runtime-current-truth.md`
 - `docs/root/msa-saas-replication-governance.md`
 - `docs/services/service-template.md`

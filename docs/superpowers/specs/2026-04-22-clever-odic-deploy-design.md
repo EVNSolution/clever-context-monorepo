@@ -8,14 +8,12 @@
 
 ## 배경
 
-현재 CLEVER의 deploy 관련 문서는 두 갈래가 섞여 있다.
+현재 CLEVER의 deploy 관련 정본은 아래처럼 나뉘어 있다.
 
 - template registry와 root governance는 `clever-context-monorepo`에 있다.
-- 실제 최신 runtime truth는 `image build once + central release + runtime inventory` 모델에 수렴해 있다.
+- 실제 runtime truth는 `image build once + central release + runtime inventory` 모델에 수렴해 있다.
 
-문제는 이 최신 모델이 template family로 명시돼 있지 않아, monorepo와 MSA를 가로지르는 공통 deploy 채택 기준으로 재사용하기 어렵다는 점이다.
-
-또한 legacy CDK/ECS 계열 문서와 현재 release/inventory 중심 모델이 같은 층위에서 읽힐 수 있어, 신규 채택 기준이 흐려질 수 있다.
+문제는 이 현재 정본 모델이 template family로 명시돼 있지 않아, monorepo와 MSA를 가로지르는 공통 deploy 채택 기준으로 재사용하기 어렵다는 점이다.
 
 ## 설계 목표
 
@@ -29,14 +27,12 @@
   - `MSA`는 multiple workloads
   - 둘 다 같은 release/inventory/contract probe 모델을 따른다
 - reusable deploy asset을 위 모델 기준으로 다시 설명한다.
-- legacy CDK/ECS 계열은 current authority가 아님을 명시한다.
 
 ## 비목표
 
 - 실제 release control repo 또는 runtime inventory repo를 새로 만들지 않는다.
 - 배포 스크립트나 GitHub Actions workflow를 이 문서에서 직접 제공하지 않는다.
 - service-specific rollout runbook을 template family 안으로 흡수하지 않는다.
-- legacy ECS/CDK 기반 profile을 공존 가능한 최신 profile로 유지하지 않는다.
 
 ## 채택 모델
 
@@ -168,7 +164,6 @@ root 기준 문서로서 아래를 분명히 한다.
 
 - current deploy baseline은 `Clever-ODIC-deploy` family로 읽는다
 - reusable asset은 `templates/deploy/`에 두되 current truth 자체를 대체하지는 않는다
-- legacy CDK/ECS 계열은 current authority가 아니다
 - monorepo와 MSA는 같은 deploy model의 다른 workload cardinality일 뿐이다
 
 ### `templates/deploy/*`
@@ -269,8 +264,6 @@ monorepo는 single workload 예시, MSA는 workload별 변수 naming 예시를 �
 
 이 경우 신규 서비스는 `Clever-ODIC-deploy@v1`을 기본 추천으로 두고, 기존 서비스는 service metadata에 lineage를 보강한다.
 
-반대로 legacy CDK/ECS 또는 direct host deploy 모델은 current recommended가 아니다.
-
 ## 테스트와 검증
 
 이번 범위는 문서형 템플릿이므로 검증은 아래로 한다.
@@ -279,7 +272,6 @@ monorepo는 single workload 예시, MSA는 workload별 변수 naming 예시를 �
 - root governance와 template family 설명이 모순되지 않는지
 - `templates/deploy/*` 자산이 canonical model과 같은 어휘를 쓰는지
 - monorepo / MSA 차이가 workload cardinality로만 설명되는지
-- legacy ECS/CDK를 current truth처럼 읽히게 두지 않는지
 
 ## 구현 순서
 
@@ -296,6 +288,5 @@ monorepo는 single workload 예시, MSA는 workload별 변수 naming 예시를 �
 
 - service metadata example을 같은 턴에 같이 갱신할지 여부
 - change-control template에 deploy lineage 확인 항목을 추가할지 여부
-- legacy deploy family를 별도 `legacy` template entry로 등록할지 여부
 
-표준 범위에서는 위 셋을 당장 다루지 않는다.
+표준 범위에서는 위 둘을 당장 다루지 않는다.
