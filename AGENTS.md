@@ -75,6 +75,26 @@ If the user is directly changing this repository:
 2. Treat `clever-context-monorepo` as the target repo for this session
 3. Still respect the wider CLEVER authority model when referencing sibling repos
 
+## Target Repository Traceability Gate
+
+When this repository is opened as part of a CLEVER session for another target
+project, the agent must follow the target-repository traceability gate defined in
+`../clever-agent-project/AGENTS.md`.
+
+That gate applies regardless of the current working directory. Before target
+implementation begins, the agent must anchor the work in `clever-change-control`,
+cross-mention the root context issue, the `clever-change-control` issue, and the
+target repository issue, then create or confirm an issue-based branch.
+
+Do not treat GitHub automatic issue references as enough. GitHub may link plain
+mentions, but the agent is responsible for maintaining the working context:
+session phase, target repository, branch name, commits, PR link, current status,
+and next action on the `clever-change-control` issue.
+
+Use `fixes`, `closes`, or similar GitHub keywords only when the PR merge is
+intended to close the referenced issue. Use plain issue mentions for context
+links.
+
 ## Read Order For Repo-Local Work
 
 When the task is specifically about this repository, read in this order:
