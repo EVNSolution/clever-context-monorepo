@@ -26,12 +26,14 @@
 
 -
 
-## CLEVER context metadata
+## CLEVER PR review completion
 
 - target branch: `dev` / `main`
 - context docs checked:
-- context wiki upload status: `updated` / `not-needed`
+- PR 정보를 wiki에 올리지 않는다.
+- 검토 에이전트 작업은 wiki/service context 업데이트로 마친다.
+- wiki/service context update result: `updated` / `not-needed`
 - service doc update:
 - wiki update:
-- clever-context-monorepo commit/PR:
+- clever-context-monorepo update:
 - linked issue close evidence:
