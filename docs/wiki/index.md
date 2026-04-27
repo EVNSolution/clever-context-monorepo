@@ -1,47 +1,15 @@
-# 위키 탐색 입구
+# Wiki Pointer
 
-이 문서는 빠른 탐색 입구다. 정본 판단은 root와 contracts 문서로 되돌아가서 한다.
+`docs/wiki`는 사실 요약을 저장하지 않는다.
 
-## 주요 root 문서
+이 repo에는 runtime status, smoke proof, service summary, PR 정보, generated
+summary를 올리지 않는다. 빠른 탐색이 필요하면 아래 완료 문서를 먼저 본다.
 
 - [`docs/root/index.md`](../root/index.md)
 - [`docs/root/doc-governance.md`](../root/doc-governance.md)
-- [`docs/root/agent-runtime-governance.md`](../root/agent-runtime-governance.md)
-- [`docs/root/msa-saas-replication-governance.md`](../root/msa-saas-replication-governance.md)
-- [`docs/root/template-harness-governance.md`](../root/template-harness-governance.md)
-- [`docs/root/deploy-template-governance.md`](../root/deploy-template-governance.md)
-- [`docs/root/architecture-principles.md`](../root/architecture-principles.md)
+- [`docs/root/authority-boundaries.md`](../root/authority-boundaries.md)
 - [`docs/root/clever-msa-platform-workspace.md`](../root/clever-msa-platform-workspace.md)
-- [`docs/root/security-reliability.md`](../root/security-reliability.md)
-- [`docs/root/local-verification-modes.md`](../root/local-verification-modes.md)
-- [`docs/root/ui-implementation-lessons.md`](../root/ui-implementation-lessons.md)
+- [`docs/root/monorepo-write-pointers.md`](../root/monorepo-write-pointers.md)
+- [`docs/templates/index.md`](../templates/index.md)
 
-## MSA SaaS 복제형 작업
-
-MSA 기반 SaaS 복제, 고객사별 변형, 컨테이너별 이미지 운영을 다루는 작업이면 먼저 [`docs/root/msa-saas-replication-governance.md`](../root/msa-saas-replication-governance.md)를 읽고, 이후 target service가 정해지면 `docs/services/<service-name>/` 아래 문서로 내려간다.
-
-## services 문서 위치
-
-서비스별 문서는 [`docs/services/`](../services/) 아래에서 찾는다.
-
-이슈 해결 시 서비스 책임, public contract, deploy/runtime 기준, 운영 caveat가 바뀌면 [`docs/root/doc-governance.md`](../root/doc-governance.md)의 이슈 해결 시 context 정리 기준을 따른다. wiki는 빠른 탐색 입구일 뿐이며 service 문서를 대신하지 않는다.
-`dev` 또는 `main`으로 들어가는 PR에서 검토 에이전트 작업은 wiki/service context 업데이트로 마친다. PR 정보를 wiki에 올리지 않고, issue close는 PR 검토 완료 결과를 참조한다.
-
-## templates 위치
-
-템플릿 registry와 version 문서는 [`docs/templates/`](../templates/) 아래에서 찾는다.
-
-## runtime proof 요약 위치
-
-현재 내부 runtime proof와 host sizing 요약은 아래 문서에서 찾는다.
-
-- [`docs/wiki/ev-dashboard-runtime-proof.md`](./ev-dashboard-runtime-proof.md)
-- [`docs/wiki/clever-msa-platform-current-runtime-status.md`](./clever-msa-platform-current-runtime-status.md)
-
-## contracts 위치
-
-전역 계약과 공통 규칙은 [`contracts/`](../../contracts/)에서 찾는다.
-
-## generated summary 주의
-
-[`docs/wiki/generated/`](./generated/)의 generated summary는 정본이 아니다. 빠른 요약 확인용이며 최종 판단 근거로 사용하지 않는다.
+제품, platform, runtime slice 사실은 소유 repo의 정본 문서를 직접 본다.

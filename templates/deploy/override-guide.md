@@ -27,5 +27,5 @@ override는 current deploy baseline 위에 덧붙는 차이만 다룬다.
 ## 주의
 
 - 공통 deploy baseline 자체를 고객사별로 복제하지 않는다.
-- service 문서에는 해당 서비스에서 실제로 쓰는 override만 기록한다.
+- runtime slice별 override는 소유 repo 문서에 기록한다.
 - baseline 규칙을 바꾸는 변경이면 root 문서까지 같이 수정한다.

@@ -2,47 +2,54 @@
 
 ## 원칙
 
-- 정본은 중복 작성하지 않는다.
-- 같은 내용을 여러 곳에 둘 경우 root 또는 contracts 한곳을 정본으로 정하고 나머지는 링크만 둔다.
-- 서비스 문서는 서비스 범위만 다룬다.
-- generated summary는 참고용으로만 사용한다.
+- 이 repo에는 완료된 규칙과 정본 위치 포인터만 둔다.
+- 작업 중 문서, 구현 계획, runtime proof, release evidence, batch scan 결과는 두지 않는다.
+- target repo의 API, env, secret category, ECR, commit, rollout caveat를 복제하지 않는다.
+- 같은 사실은 소유 repo 한 곳에서만 관리하고, 이 repo는 필요하면 pointer만 둔다.
+- generated summary는 이 repo의 정본 입력으로 쓰지 않는다.
 
 ## 변경 기준
 
 - 전역 규칙 변경은 `docs/root` 또는 `contracts`에서 먼저 반영한다.
-- 서비스 범위 변경은 `docs/services`에서 반영한다.
-- change package는 변경 시점의 해석 보조 자료로만 사용한다.
+- product service 또는 runtime slice 범위 변경은 소유 repo의 정본 문서에서 반영한다.
+- 이 repo에는 그 정본 위치가 바뀌었을 때 pointer만 갱신한다.
+- change package는 승인/추적 repo의 기록이지 이 repo에 복제할 문서가 아니다.
 
-## 이슈 해결 시 context 정리 기준
+## 사용자 승인 pointer 예외
 
-target repo에서 이슈를 해결 완료로 표시하기 전에는 `clever-context-monorepo` 반영 필요 여부를 확인한다.
-`dev` 또는 `main`으로 들어가는 PR이 있으면 검토 에이전트 작업은 wiki/service context 업데이트로 마친다.
-PR 정보를 wiki에 올리지 않는다.
+사용자가 명시적으로 요청하면 issue-backed 외부 monorepo 작성 목록을 짧은 pointer로
+남길 수 있다.
 
-- 서비스 책임, API, 데이터 흐름, public contract, deploy/runtime 기준, env/secret category, 운영 caveat가 바뀌면 `docs/services/<service>/index.md`를 우선 갱신한다.
-- 전역 규칙, 공통 용어, contracts 기준이 바뀌면 `docs/root` 또는 `contracts`를 우선 갱신한다.
-- `docs/wiki`는 정본이 아니다. 빠른 탐색 링크, runtime proof, 짧은 요약이 필요할 때만 갱신한다.
-- 검토 완료 결과에는 확인한 context 문서, `wiki/service context update result`, service 문서 수정 여부, wiki 수정 여부, `clever-context-monorepo` 반영 commit 또는 PR을 남긴다.
-- 문서 반영이 필요 없으면 검토 완료 결과와 이슈 종료 코멘트에 불필요 사유를 남긴다.
-- issue close는 PR 검토 완료 결과를 참조한다. 같은 context/wiki 판단을 이슈 종료 단계에서 다시 작성하지 않는다.
-- 여러 이슈가 같은 서비스 문서를 건드리면 중복 요약을 만들지 말고 service 문서의 기존 섹션을 보강한다.
+- 위치: `docs/root/monorepo-write-pointers.md`
+- 허용: target repo, issue URL, 작성 대상 파일 경로, 작성 범주
+- 금지: target repo 문서 본문 복제, runtime proof, credential, provider payload
 
-## dev/main PR review completion 기준
+## 금지 문서
 
-`dev` PR은 integration merge 단위, `main` PR은 deploy merge 단위로 본다.
-둘 다 code merge와 별개로 검토 에이전트 작업이 wiki/service context 업데이트 또는 불필요 사유 확정으로 끝나야 한다.
+아래는 이 repo에 만들지 않는다.
 
-- `wiki/service context update result`: `updated` 또는 `not-needed`
-- `service doc update`: 수정 파일 또는 `not-needed`
-- `wiki update`: 수정 파일 또는 `not-needed`
-- `clever-context-monorepo update`: context 반영 commit 또는 PR 링크
-- `linked issue close evidence`: 이슈 종료 코멘트에 복사할 context/wiki 결과
+- `docs/services/<slice>/index.md`
+- 작업 계획이나 implementation plan
+- 진행 중 design draft
+- runtime current status
+- runtime proof 또는 smoke evidence
+- 서비스별 README 요약
+- 서비스별 API/env/ECR/commit 목록
+- local absolute path가 들어간 문서
+- `확인 필요` 상태의 정보
 
-wiki는 탐색 입구일 뿐이다. 정본 변경은 먼저 `docs/root`, `contracts`, `docs/services/<service>/index.md` 중 적절한 위치에 반영한다.
-wiki에는 PR 정보를 올리지 않고, 필요한 서비스/운영 context만 반영한다.
+## PR 완료 시 context 판단
+
+target repo PR을 닫기 전에 이 repo 반영 필요 여부를 확인한다.
+
+- 전역 규칙, 공통 용어, template registry, authority pointer가 바뀌면 이 repo를 갱신한다.
+- 제품/플랫폼/런타임 사실만 바뀌었으면 소유 repo 문서만 갱신하고 이 repo는 `not-needed`로 남긴다.
+- 검토 완료 결과에는 `clever-context-monorepo update: <commit-or-PR>` 또는 `not-needed`만 남긴다.
+- PR 정보와 운영 증거를 wiki에 올리지 않는다.
 
 ## 검토 기준
 
 - 문서 간 용어가 일치해야 한다.
-- 상위 우선순위 문서와 충돌하면 하위 문서를 수정한다.
+- 외부 정본의 사실을 이 repo가 다시 설명하면 실패다.
+- issue-backed pointer는 상세 본문이 아니라 target repo로 가는 작업 위치만 남겨야 한다.
 - 실행자가 빠르게 판단할 수 있게 짧고 명확하게 작성한다.
