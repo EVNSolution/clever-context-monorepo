@@ -16,13 +16,13 @@
 ## SSOT 경계
 
 - 현재 중앙 배포 런타임 truth는 `docs/root/central-deploy-runtime-current-truth.md`를 우선 기준으로 본다.
-- current deploy baseline을 template lineage로 읽을 때는 `docs/templates/Clever-ODIC-deploy/` family를 먼저 본다.
+- current deploy baseline을 template lineage로 읽을 때는 `docs/templates/Clever-OIDC-deploy/` family를 먼저 본다.
 - 서비스 문서는 공통 배포 절차를 다시 쓰지 않고, 서비스 고유 차이만 적는다.
 - `templates/deploy/`는 root 규칙을 재사용하기 위한 boilerplate와 예시 자산을 둔다.
 
 ## 공통 deploy baseline
 
-현재 공통 deploy baseline은 `Clever-ODIC-deploy` family로 읽는다.
+현재 공통 deploy baseline은 `Clever-OIDC-deploy` family로 읽는다.
 
 이 baseline은 monorepo와 MSA를 서로 다른 deploy 방식으로 설명하지 않는다.
 
@@ -153,8 +153,8 @@ customer-specific override는 아래처럼 나눠 적는다.
 
 ## 관련 문서
 
-- `docs/templates/Clever-ODIC-deploy/index.md`
-- `docs/templates/Clever-ODIC-deploy/versions/v1.md`
+- `docs/templates/Clever-OIDC-deploy/index.md`
+- `docs/templates/Clever-OIDC-deploy/versions/v1.md`
 - `docs/root/central-deploy-runtime-current-truth.md`
 - `docs/root/msa-saas-replication-governance.md`
 - `docs/services/service-template.md`

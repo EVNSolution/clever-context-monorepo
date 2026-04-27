@@ -1,8 +1,8 @@
-# Clever-ODIC-deploy Design
+# Clever-OIDC-deploy Design
 
 ## 목적
 
-이 문서는 `Clever-ODIC-deploy`를 `clever-context-monorepo` 안의 정식 deploy template family로 추가하는 설계를 고정한다.
+이 문서는 `Clever-OIDC-deploy`를 `clever-context-monorepo` 안의 정식 deploy template family로 추가하는 설계를 고정한다.
 
 이 설계는 새 배포 저장소를 만드는 것이 아니라, 현재 최신 배포 정본을 template registry, root governance, reusable asset 구조로 승격하는 것을 목표로 한다.
 
@@ -17,7 +17,7 @@
 
 ## 설계 목표
 
-- `Clever-ODIC-deploy`를 정식 template family로 registry에 등록한다.
+- `Clever-OIDC-deploy`를 정식 template family로 registry에 등록한다.
 - 최신 배포 정본을 아래 모델로 고정한다.
   - app repo는 image build만 담당
   - central release lane이 실제 deploy를 담당
@@ -36,7 +36,7 @@
 
 ## 채택 모델
 
-`Clever-ODIC-deploy`의 canonical deploy model은 아래 한 줄이다.
+`Clever-OIDC-deploy`의 canonical deploy model은 아래 한 줄이다.
 
 `repo main build -> immutable image artifact -> central release resolve -> runtime inventory scoped deploy -> public contract probe -> release evidence`
 
@@ -99,8 +99,8 @@ monorepo와 MSA의 차이는 artifact cardinality와 workload cardinality에만 
 
 ### 새로 추가
 
-- `docs/templates/Clever-ODIC-deploy/index.md`
-- `docs/templates/Clever-ODIC-deploy/versions/v1.md`
+- `docs/templates/Clever-OIDC-deploy/index.md`
+- `docs/templates/Clever-OIDC-deploy/versions/v1.md`
 
 ### 갱신
 
@@ -113,7 +113,7 @@ monorepo와 MSA의 차이는 artifact cardinality와 workload cardinality에만 
 
 ## 문서별 책임
 
-### `docs/templates/Clever-ODIC-deploy/index.md`
+### `docs/templates/Clever-OIDC-deploy/index.md`
 
 template family entry 역할을 가진다.
 
@@ -126,7 +126,7 @@ template family entry 역할을 가진다.
 - current authority 링크
 - version 문서 링크
 
-### `docs/templates/Clever-ODIC-deploy/versions/v1.md`
+### `docs/templates/Clever-OIDC-deploy/versions/v1.md`
 
 `v1`의 concrete baseline을 설명한다.
 
@@ -143,7 +143,7 @@ template family entry 역할을 가진다.
 
 ### `docs/templates/index.md`
 
-registry entry로 `Clever-ODIC-deploy`를 추가한다.
+registry entry로 `Clever-OIDC-deploy`를 추가한다.
 
 registry 표시는 아래처럼 읽히게 한다.
 
@@ -154,7 +154,7 @@ registry 표시는 아래처럼 읽히게 한다.
 
 기존 템플릿과의 관계도 짧게 적는다.
 
-- `Clever-ODIC-deploy`: 현재 deploy 정본
+- `Clever-OIDC-deploy`: 현재 deploy 정본
 - `msa-template`: family-level 설명용 entry
 - `test-erik-project-template`: 특정 monorepo scaffold와 infra posture를 가진 별도 템플릿
 
@@ -162,7 +162,7 @@ registry 표시는 아래처럼 읽히게 한다.
 
 root 기준 문서로서 아래를 분명히 한다.
 
-- current deploy baseline은 `Clever-ODIC-deploy` family로 읽는다
+- current deploy baseline은 `Clever-OIDC-deploy` family로 읽는다
 - reusable asset은 `templates/deploy/`에 두되 current truth 자체를 대체하지는 않는다
 - monorepo와 MSA는 같은 deploy model의 다른 workload cardinality일 뿐이다
 
@@ -237,7 +237,7 @@ monorepo는 single workload 예시, MSA는 workload별 변수 naming 예시를 �
 
 ## 오류 모델
 
-`Clever-ODIC-deploy`는 모든 배포 오류를 막지 않는다.
+`Clever-OIDC-deploy`는 모든 배포 오류를 막지 않는다.
 
 대신 아래 class 오류를 줄이는 데 책임이 있다.
 
@@ -257,12 +257,12 @@ monorepo는 single workload 예시, MSA는 workload별 변수 naming 예시를 �
 
 ## 마이그레이션 해석
 
-기존 서비스가 아래 조건이면 `Clever-ODIC-deploy` 채택 또는 migration 검토 대상으로 본다.
+기존 서비스가 아래 조건이면 `Clever-OIDC-deploy` 채택 또는 migration 검토 대상으로 본다.
 
 - 현재 image artifact + central release + runtime inventory 모델을 실제로 따르고 있다
 - 하지만 서비스 문서에 그 lineage가 명시돼 있지 않다
 
-이 경우 신규 서비스는 `Clever-ODIC-deploy@v1`을 기본 추천으로 두고, 기존 서비스는 service metadata에 lineage를 보강한다.
+이 경우 신규 서비스는 `Clever-OIDC-deploy@v1`을 기본 추천으로 두고, 기존 서비스는 service metadata에 lineage를 보강한다.
 
 ## 테스트와 검증
 
@@ -275,7 +275,7 @@ monorepo는 single workload 예시, MSA는 workload별 변수 naming 예시를 �
 
 ## 구현 순서
 
-1. `Clever-ODIC-deploy` spec 승인
+1. `Clever-OIDC-deploy` spec 승인
 2. template family 문서 추가
 3. registry 갱신
 4. root deploy governance 갱신
