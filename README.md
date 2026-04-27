@@ -82,6 +82,27 @@ admin bypass는 `pull_request` 모드만 허용한다.
 Merge pull request #<pr-number> from <owner>/<source-branch>
 ```
 
+### PR 완료 후 branch 정리
+
+PR이 merge됐거나 source branch를 버리기로 하고 closed 처리된 뒤에는 task
+branch를 정리한다. 단, 해당 branch가 아직 open PR, 후속 issue, child branch,
+active release/hotfix에 쓰이면 삭제하지 않는다.
+
+기본 명령은 아래 순서다.
+
+```bash
+git switch main
+git pull --ff-only origin main
+git branch -d <source-branch>
+git push origin --delete <source-branch>
+git fetch --prune origin
+```
+
+- `main`과 `dev`는 삭제 대상이 아니다.
+- 기본은 `git branch -d <source-branch>`를 쓴다.
+- merge 없이 닫은 branch를 폐기해야 할 때만 사용자 확인 후 `git branch -D <source-branch>`를 쓴다.
+- remote branch가 GitHub에서 이미 삭제됐더라도 `git fetch --prune origin`으로 로컬 추적 branch를 정리한다.
+
 ## clever-change-control과의 관계
 
 `clever-change-control`은 변경 요청, 승인, rollout/rollback 흐름을 관리한다. 이 저장소는 그 흐름에서 참조하는 정본 문맥, 규칙, 용어, 계약을 관리한다.
