@@ -24,6 +24,26 @@
 - admin bypass는 `pull_request` 모드만 허용한다.
 - 긴급 변경도 PR 안에 change id와 사유를 남긴다.
 
+## PR merge commit 제목 규칙
+
+`main`에 들어가는 merge commit 제목은 PR merge임이 바로 보이게 만든다.
+기본 형식은 아래다.
+
+```text
+PR-MERGE <owner>/<repo>#<pr-number>: <pr-title>
+```
+
+에이전트가 merge할 때는 squash merge subject를 명시한다.
+
+```bash
+gh pr merge <pr-number> --squash \
+  --subject "PR-MERGE <owner>/<repo>#<pr-number>: <pr-title>" \
+  --body-file <merge-body-file>
+```
+
+merge body에는 merge summary, validation evidence, wiki/service context update result를 남긴다.
+일반 작업 commit 제목을 그대로 main merge commit 제목으로 쓰지 않는다.
+
 ## 제외
 
 - 서버 배포 절차 상세

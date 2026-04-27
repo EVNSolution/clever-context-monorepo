@@ -75,6 +75,12 @@ merge/write는 repo admin 권한자만 수행한다.
 admin bypass는 `pull_request` 모드만 허용한다.
 상세 기준은 `docs/root/pipeline-governance.md`를 따른다.
 
+`main` merge commit 제목은 PR merge임이 드러나게 아래 형식을 쓴다.
+
+```text
+PR-MERGE <owner>/<repo>#<pr-number>: <pr-title>
+```
+
 ## clever-change-control과의 관계
 
 `clever-change-control`은 변경 요청, 승인, rollout/rollback 흐름을 관리한다. 이 저장소는 그 흐름에서 참조하는 정본 문맥, 규칙, 용어, 계약을 관리한다.

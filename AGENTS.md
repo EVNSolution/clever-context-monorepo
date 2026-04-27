@@ -67,6 +67,21 @@ ruleset `CLEVER protect main`.
 - Merge/write access is limited to repository admins.
 - Admin bypass is allowed only in `pull_request` mode.
 
+## PR Merge Commit Title Contract
+
+When merging a PR into `main`, make the resulting main commit visibly PR-based.
+Use squash merge and set the merge subject explicitly:
+
+```bash
+gh pr merge <pr-number> --squash \
+  --subject "PR-MERGE <owner>/<repo>#<pr-number>: <pr-title>" \
+  --body-file <merge-body-file>
+```
+
+Merge body should include the merge summary, validation evidence, and
+wiki/service context update result. Do not use a plain feature/doc commit title
+as the main merge commit subject.
+
 Do not treat this repository as:
 
 - the default generic startup surface
