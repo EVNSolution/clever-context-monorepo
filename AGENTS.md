@@ -27,19 +27,24 @@ CLEVER expects a local three-repository workspace:
 2. `clever-context-monorepo`
 3. `clever-change-control`
 
-Before doing real work, run the automatic workspace check from the current session:
+Before doing real work, run the automatic preflight check from the current session:
 
 ```bash
-python3 ../clever-agent-project/scripts/bootstrap_clever_work.py --cwd "$PWD" --workspace-check --json
+python3 ../clever-agent-project/scripts/bootstrap_clever_work.py --cwd "$PWD" --preflight --json
 ```
 
 If the session is explicitly about editing this repository itself, run:
 
 ```bash
-python3 ../clever-agent-project/scripts/bootstrap_clever_work.py --cwd "$PWD" --workspace-check --current-repo-maintenance --json
+python3 ../clever-agent-project/scripts/bootstrap_clever_work.py --cwd "$PWD" --preflight --current-repo-maintenance --json
 ```
 
-Interpret `agent_action` like this:
+The preflight must verify `gh auth status`, GitHub login `OziinG`,
+`EVNSolution` org membership, control-plane remotes, clean worktrees, remote
+fetch access, and issue/PR/ruleset read access. If `preflight_check.ready` is
+false, stop before startup work and report the failed checks.
+
+If it is true, interpret `workspace_check.agent_action` like this:
 
 - `proceed-with-hard-gate`: the workspace is complete and startup may continue
 - `current-repo-maintenance`: this repository itself is the target, so stay here
