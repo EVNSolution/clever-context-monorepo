@@ -124,8 +124,8 @@ Do not treat this repository as:
 
 If the user is starting a new CLEVER task and the target repo is not yet fixed:
 
-1. Run the workspace check
-2. If the workspace is healthy, move startup to `clever-agent-project`
+1. Run the preflight check from the current session
+2. If `preflight_check.ready=true`, move startup to `clever-agent-project`
 3. Apply the first-response hard gate there
 
 If the user is directly changing this repository:
