@@ -88,6 +88,32 @@ Merge body should start with the PR title, then include the merge summary,
 validation evidence, and wiki/service context update result. Do not use a plain
 feature/doc commit title as the main merge commit subject.
 
+## PR Branch Cleanup Contract
+
+PR 완료 후 branch 정리:
+
+After a PR is merged, or closed with the source branch intentionally abandoned,
+clean up the task branch unless it still has an open PR, linked follow-up issue,
+child branch, or active release/hotfix use.
+
+Default command sequence:
+
+```bash
+git switch main
+git pull --ff-only origin main
+git branch -d <source-branch>
+git push origin --delete <source-branch>
+git fetch --prune origin
+```
+
+- `main`과 `dev`는 삭제 대상이 아니다.
+- Use `git branch -d <source-branch>` by default.
+- Use `git branch -D <source-branch>` only when the PR was closed without merge
+  and the user explicitly confirms the branch can be discarded.
+- Do not delete a remote branch if it still backs an open PR, follow-up issue,
+  child branch, or active release/hotfix.
+- If GitHub already deleted the remote branch, still run `git fetch --prune origin`.
+
 Do not treat this repository as:
 
 - the default generic startup surface
