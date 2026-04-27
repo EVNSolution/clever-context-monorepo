@@ -70,7 +70,8 @@ agent는 하나의 실행자다. global과 local은 agent 종류가 아니라 �
 ## main 브랜치 운영 규칙
 
 이 repo는 public으로 운영하며, `main`은 GitHub ruleset `CLEVER protect main`으로 보호한다.
-기본값은 direct push 금지, PR 필수, 최소 1명 승인이다.
+기본값은 direct push 금지, PR 필수, 승인 수 0명이다.
+merge/write는 repo admin 권한자만 수행한다.
 admin bypass는 `pull_request` 모드만 허용한다.
 상세 기준은 `docs/root/pipeline-governance.md`를 따른다.
 

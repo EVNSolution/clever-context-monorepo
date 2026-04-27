@@ -63,7 +63,8 @@ ruleset `CLEVER protect main`.
 - Do not push directly to `main`.
 - Use a role-prefixed branch for repository changes.
 - Open a PR into `main`.
-- `main` PRs require at least one approval.
+- `main` requires a PR but does not require approving reviews.
+- Merge/write access is limited to repository admins.
 - Admin bypass is allowed only in `pull_request` mode.
 
 Do not treat this repository as:
