@@ -44,6 +44,25 @@ gh pr merge <pr-number> --squash \
 merge body 첫 줄에는 PR title을 남기고, 이어서 merge summary, validation evidence, wiki/service context update result를 남긴다.
 일반 작업 commit 제목을 그대로 main merge commit 제목으로 쓰지 않는다.
 
+## PR Scope Grouping Gate
+
+PR은 파일 수가 아니라 변경 축, 검증 단위, 롤백 단위로 나눈다.
+
+같은 issue 안에서 same document/operating-rule cleanup 축이고 same validation command로
+충분하면 한 PR로 묶는다. `AGENTS.md`, PR template, startup state
+template, project brief template, design source policy, merge title template
+sync처럼 같은 운영 규칙을 맞추는 작은 문서 정리는 한 PR로 처리한다.
+
+분리 PR은 아래 경우에 쓴다.
+
+- different app/service/contract surface를 건드린다.
+- 테스트 범위와 실패 지점이 다르다.
+- merge order dependency가 있다.
+- 실패 시 rollback unit이 다르다.
+
+OpenAPI schema 변경, Admin Web smoke 화면, Rider App smoke 화면, Spring
+service mock endpoint 구현은 보통 분리 PR로 다룬다.
+
 ## 제외
 
 - 서버 배포 절차 상세
