@@ -8,10 +8,10 @@
 
 - root 시작 라인은 `project-start issue #`로 추적한다.
 - scoped change, rollout, rollback은 `change id` 기준으로 추적한다.
-- 일반 intake에서는 candidate repo/service로 시작할 수 있다.
-- 구현이나 rollout을 시작하기 전에는 target repo와 target service를 확정한다.
-- spec, ui-spec, contracts, service docs가 맞지 않으면 구현을 진행하지 않는다.
-- 파이프라인별 세부 설정값은 서비스 문서에서 관리한다.
+- 일반 intake에서는 candidate repo 또는 candidate slice로 시작할 수 있다.
+- 구현이나 rollout을 시작하기 전에는 target repo와 target slice를 확정한다.
+- spec, ui-spec, contracts, 소유 repo 정본 문서가 맞지 않으면 구현을 진행하지 않는다.
+- 파이프라인별 세부 설정값은 소유 repo 문서에서 관리한다.
 
 ## main 브랜치 운영 규칙
 
@@ -41,7 +41,7 @@ gh pr merge <pr-number> --squash \
   --body-file <merge-body-file>
 ```
 
-merge body 첫 줄에는 PR title을 남기고, 이어서 merge summary, validation evidence, wiki/service context update result를 남긴다.
+merge body 첫 줄에는 PR title을 남기고, 이어서 merge summary, validation evidence, context update result를 남긴다.
 일반 작업 commit 제목을 그대로 main merge commit 제목으로 쓰지 않는다.
 
 ## PR Scope Grouping Gate
@@ -55,13 +55,13 @@ sync처럼 같은 운영 규칙을 맞추는 작은 문서 정리는 한 PR로 �
 
 분리 PR은 아래 경우에 쓴다.
 
-- different app/service/contract surface를 건드린다.
+- different app/runtime-slice/contract surface를 건드린다.
 - 테스트 범위와 실패 지점이 다르다.
 - merge order dependency가 있다.
 - 실패 시 rollback unit이 다르다.
 
 OpenAPI schema 변경, Admin Web smoke 화면, Rider App smoke 화면, Spring
-service mock endpoint 구현은 보통 분리 PR로 다룬다.
+runtime slice mock endpoint 구현은 보통 분리 PR로 다룬다.
 
 ## 제외
 

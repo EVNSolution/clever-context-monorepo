@@ -2,97 +2,42 @@
 
 ## 목적
 
-이 문서는 CLEVER 작업 중 `MSA/SaaS 복제형 작업`을 일반 개발과 구분하기 위한 전역 기준 문서다.
+이 문서는 MSA/SaaS 복제형 작업의 분기 규칙만 고정한다.
 
-시작점은 항상 `clever-agent-project`지만, 이 문서는 아래 상황에서 먼저 읽는다.
+제품과 runtime 사실은 이 repo에 복제하지 않는다.
 
-- 플랫폼 템플릿을 바탕으로 서비스를 복제하려는 경우
-- 고객사별로 수정/변경을 얹어 SaaS 형태로 운영하려는 경우
-- 컨테이너마다 다른 이미지를 올리는 배포 구조를 정리하려는 경우
+## 기준 용어
 
-## 기본 원칙
+- product service: 사용자가 하나로 인식하는 제품/플랫폼 서비스
+- runtime slice: product service를 구성하는 구현/배포 단위
+- workload: runtime inventory와 release lane이 다루는 실행 단위
 
-- MSA/SaaS 복제형 규칙은 일반 개발의 기본값이 아니다.
-- 전역 분기 기준은 `docs/root`에 둔다.
-- 특정 서비스의 고객사별 차이점은 `docs/services/<service-name>/index.md`에 둔다.
-- `docs/wiki`는 탐색 입구만 제공하고 정본 판단은 root와 service 문서로 되돌아간다.
+CLEVER MSA platform은 product service로는 하나다. `service-*`, `front-*`,
+`edge-*`, `runtime-*`는 runtime slice다.
 
-## 시작 분기 기준
+## 분기 규칙
 
-작업 시작 시 먼저 아래 둘 중 하나로 분류한다.
+아래에 가까우면 MSA/SaaS 복제형 작업으로 본다.
 
-- `MSA/SaaS 복제형 작업`
-- `일반 개발 작업`
+- 같은 product service를 고객사별로 복제 또는 변형한다.
+- runtime slice, workload, image, env, secret, 외부 연동값의 차이를 다룬다.
+- 공통 platform template 위에 customer-specific override를 얹는다.
 
-`MSA/SaaS 복제형 작업`이면 target service 또는 대상 서비스 군을 먼저 대화로 정한다.
+아래에 가까우면 일반 개발 작업으로 본다.
 
-그 다음 아래 순서로 읽는다.
+- 단일 runtime slice 내부의 app-only 변경이다.
+- product service, workload, deploy contract가 바뀌지 않는다.
 
-1. 이 문서
-2. `docs/root/clever-msa-platform-workspace.md`
-3. 관련 root 문서와 glossary
-4. target service가 정해졌으면 `docs/services/<service-name>/index.md`
+## 문서 위치 규칙
 
-`일반 개발 작업`이면 이 문서를 강제하지 않고 기존 `project-start -> target repo -> handoff` 흐름을 따른다.
-
-## 작업 유형 구분
-
-### 복제
-
-아래에 가까우면 `복제`로 본다.
-
-- 기존 서비스 경계와 책임을 유지한다.
-- 공통 템플릿 또는 공통 배포 패턴을 재사용한다.
-- 고객사별 차이는 주로 이미지, 설정, 배포 단위, 외부 연동값에 있다.
-
-### 수정
-
-아래에 가까우면 `수정`으로 본다.
-
-- 기존 서비스의 일부 동작이나 계약을 국소적으로 바꾼다.
-- 서비스 정체성이나 배포 단위는 유지한다.
-- 고객사별 예외나 운영 조건을 좁은 범위에서 조정한다.
-
-### 변경
-
-아래에 가까우면 `변경`으로 본다.
-
-- 서비스 경계는 유지하지만 운영 방식이나 연결 구조가 눈에 띄게 달라진다.
-- 배포 표준, 라우팅, 이벤트 연결, 데이터 흐름 중 일부를 재정의한다.
-- 기존 템플릿 재사용만으로 설명하기 어려운 구조 차이가 생긴다.
-
-### 신규
-
-아래에 가까우면 `신규`로 본다.
-
-- 기존 서비스 복제로 보기 어려운 새로운 책임이 생긴다.
-- 별도 service leaf 문서와 target repo 판단이 필요하다.
-- 기존 고객사별 변형이 아니라 새로운 서비스 단위로 추적하는 것이 맞다.
-
-## 서비스 단위 판단 기준
-
-- 같은 서비스로 유지할 수 있으면 service leaf 안에서 고객사별 variation을 기록한다.
-- 공통 이미지와 설정 override로 설명 가능하면 복제형으로 우선 본다.
-- 경계, 책임, 외부 계약이 달라지면 새 서비스 또는 큰 변경 가능성을 먼저 검토한다.
-- target service가 정해지지 않았으면 임의 leaf 문서를 먼저 만들지 않는다.
-
-## 배포 문서화 기준
-
-- 고객사별 배포 차이는 이미지, 태그, 환경변수, 시크릿, 외부 연동, rollout 단위로 나눠 적는다.
-- 컨테이너마다 다른 이미지를 올리는 경우에도 공통 템플릿과 override 경계를 분리해 적는다.
-- 고객사별 차이만 leaf 문서에 적고, 공통 규칙은 이 root 문서나 다른 root 문서에 둔다.
-- 배포 표준을 바꾸는 경우 service 문서만 수정하지 말고 관련 root 문서까지 같이 본다.
-
-## 문서 반영 기준
-
-- 시작점 repo에는 분기 규칙만 짧게 둔다.
-- 전역 원칙은 이 문서에 둔다.
-- 서비스별 SaaS variation은 `docs/services/<service-name>/index.md`에 둔다.
-- 탐색 편의를 위한 링크는 `docs/wiki`에만 추가한다.
+- 전역 분기 규칙만 이 문서에 둔다.
+- customer-specific 사실과 runtime slice별 값은 소유 repo 문서에 둔다.
+- 이 repo에는 service leaf 문서를 만들지 않는다.
+- target이 정해지면 `target service`가 아니라 `target slice`로 기록한다.
 
 ## 하지 말아야 할 것
 
-- 모든 CLEVER 작업을 MSA/SaaS 복제형으로 취급하지 않는다.
-- `docs/wiki`를 정본으로 취급하지 않는다.
-- target service가 정해지기 전에 leaf 문서를 임의 생성하지 않는다.
-- 고객사별 차이와 전역 규칙을 같은 문단에 섞어 쓰지 않는다.
+- product service와 runtime slice를 둘 다 `service`라고 부르지 않는다.
+- 고객사별 차이를 이 repo에 요약하지 않는다.
+- runtime proof나 rollout evidence를 이 repo에 올리지 않는다.
+- 소유 repo 문서를 복제해서 context 문서로 만들지 않는다.

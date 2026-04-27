@@ -9,8 +9,8 @@
 정본 규칙은 아래 순서로 읽는다.
 
 1. `docs/root/deploy-template-governance.md`
-2. `docs/root/central-deploy-runtime-current-truth.md`
-3. `docs/templates/Clever-OIDC-deploy/versions/v1.md`
+2. `docs/templates/Clever-OIDC-deploy/versions/v1.md`
+3. runtime/deploy 소유 repo의 정본 문서
 
 ## 포함 자산
 
@@ -54,6 +54,6 @@
 
 이 디렉터리는 운영 truth 자체를 대체하지 않는다.
 
-- current runtime truth는 root 문서에서 읽는다.
-- 이 디렉터리는 그 truth를 서비스 문서와 template lineage에서 반복 가능하게 재사용하는 예시 자산이다.
-- 서비스별 caveat와 concrete value는 서비스 문서에서 보강한다.
+- current runtime truth는 이 repo에서 읽지 않는다.
+- 이 디렉터리는 template lineage에서 반복 가능하게 재사용하는 예시 자산이다.
+- runtime slice별 caveat와 concrete value는 소유 repo 문서에서 보강한다.

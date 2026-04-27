@@ -7,7 +7,7 @@
 ## 저장소별 authority
 
 - `clever-agent-project`: 실행 시작점. 사용자 요청 intake, bootstrap packet 초안, context 문서 읽기 지시, handoff 제안을 맡는다.
-- `clever-context-monorepo`: 해석 정본. root rules, template lineage, deploy baseline, service metadata, contracts를 맡는다.
+- `clever-context-monorepo`: 해석 정본. 완료된 root rules, template lineage, source-of-truth pointer, contracts를 맡는다.
 - `clever-change-control`: 승인·추적 정본. `project-start` root issue, scoped change request, rollout/rollback trace, release evidence linkage를 맡는다.
 
 ## 식별자 계층
@@ -26,19 +26,19 @@
 - constraints
 - expected result
 - candidate template lineage
-- candidate target repo/service if known
+- candidate target repo or target slice if known
 
 ### root intake에서 강제하지 않는 값
 
 - `change id`
-- 확정된 `target service`
+- 확정된 `target slice`
 - 확정된 implementation repo
 
 ### approval 후 scoped execution에서 필수인 값
 
 - `change id`
 - target repo
-- target service
+- target slice
 - rollout scope if deployment-affecting
 
 즉 시작은 느슨하게 열고, 승인 이후 실행 단위는 엄격하게 닫는다.
@@ -49,7 +49,8 @@
 - 규칙 해석과 template/deploy 판단은 `clever-context-monorepo`를 먼저 본다.
 - 승인 상태와 change traceability는 `clever-change-control`을 먼저 본다.
 - 어느 문서에서도 `change id`를 root 시작 식별자로 다시 올리지 않는다.
-- 일반 intake에서는 `target service`를 후보로만 다룰 수 있다.
+- 일반 intake에서는 `target slice`를 후보로만 다룰 수 있다.
+- product service와 runtime slice 사실은 소유 repo 문서를 복제하지 않고 pointer로만 연결한다.
 
 ## external truth 취급
 

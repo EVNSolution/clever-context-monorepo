@@ -40,9 +40,9 @@ python3 ../clever-agent-project/scripts/bootstrap_clever_work.py \
 3. constraints
 4. expected result
 5. candidate template lineage
-6. candidate target repo/service if known
+6. candidate target repo or target slice if known
 
-이 단계에서는 `change id`, 확정된 `target repo`, 확정된 `target service`를 강제하지 않는다.
+이 단계에서는 `change id`, 확정된 `target repo`, 확정된 `target slice`를 강제하지 않는다.
 
 ### scoped execution
 
@@ -50,7 +50,7 @@ python3 ../clever-agent-project/scripts/bootstrap_clever_work.py \
 
 1. user session
 2. target repo
-3. target service
+3. target slice
 4. change id
 
 이 값이 확정되지 않으면 이전 scoped execution 문맥을 임의로 이어서 사용하지 않는다.
@@ -68,4 +68,4 @@ python3 ../clever-agent-project/scripts/bootstrap_clever_work.py \
 - global context는 전역 규칙, contracts, root 문서를 뜻한다.
 - local context는 현재 단계에 따라 다르다.
 - root intake에서는 현재 `project-start` draft 범위를 뜻한다.
-- scoped execution에서는 target repo, target service, change id 범위를 뜻한다.
+- scoped execution에서는 target repo, target slice, change id 범위를 뜻한다.

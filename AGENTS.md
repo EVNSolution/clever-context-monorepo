@@ -57,8 +57,15 @@ Use this repository for:
 
 - root rules and authority boundaries
 - template lineage and deploy baseline
-- service metadata
-- contracts and interpretation context
+- source-of-truth pointers
+- completed contracts and interpretation rules
+
+Do not use this repository for:
+
+- working notes or implementation plans
+- runtime status, proof, or release evidence
+- copied API/env/ECR/service details from target repositories
+- generated batch scans of runtime slices
 
 ## Main Branch Contract
 
@@ -85,8 +92,8 @@ gh pr merge <pr-number> --squash \
 ```
 
 Merge body should start with the PR title, then include the merge summary,
-validation evidence, and wiki/service context update result. Do not use a plain
-feature/doc commit title as the main merge commit subject.
+validation evidence, and context update result. Do not use a plain feature/doc
+commit title as the main merge commit subject.
 
 ## PR Branch Cleanup Contract
 
@@ -161,7 +168,7 @@ When the task is specifically about this repository, read in this order:
 1. `README.md`
 2. `docs/root/authority-boundaries.md`
 3. `docs/root/index.md`
-4. the specific `docs/root`, `docs/services`, or `docs/templates` files touched by the task
+4. the specific `docs/root`, `docs/templates`, or pointer files touched by the task
 5. `../clever-agent-project/AGENTS.md`
 6. `../clever-change-control/README.md`
 

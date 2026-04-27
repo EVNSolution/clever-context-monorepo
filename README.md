@@ -2,7 +2,9 @@
 
 ## 목적
 
-이 저장소는 팀 에이전트 규칙 통합과 기능 구현 흐름에 필요한 정본 문맥을 관리하기 위한 저장소다.
+이 저장소는 팀 에이전트가 따라야 하는 완료된 해석 규칙과 정본 위치 포인터만 관리한다.
+
+이 저장소는 작업 중 문서, 서비스별 상세 정보, 런타임 상태, 운영 증거, target repo 문서의 복사본을 보관하지 않는다.
 
 ## 작업 시작 규칙
 
@@ -37,24 +39,23 @@ python3 ../clever-agent-project/scripts/bootstrap_clever_work.py --cwd "$PWD" --
 
 ## 디렉터리 역할
 
-- `docs/root`: 전역 규칙, 시작 순서, 공통 원칙의 정본
-- `docs/services`: 서비스별 문맥과 서비스 단위 규칙
-- `docs/wiki`: 빠르게 찾아가기 위한 탐색 입구
-- `contracts`: 전역 계약, 공통 인터페이스, 공통 규칙 기준점
+- `docs/root`: 완료된 전역 규칙과 authority boundary
+- `docs/services`: 서비스 상세가 아니라 외부 정본 위치만 가리키는 compatibility entry
+- `docs/wiki`: 사실 요약이 아니라 포인터만 담는 얇은 탐색 입구
+- `contracts`: 이 repo가 직접 소유하는 전역 계약이 있을 때만 사용
 
 ## wiki의 위치
 
-`docs/wiki`는 정본이 아니다. 빠르게 탐색하기 위한 입구이며, 최종 판단은 정본 문서로 되돌아가서 한다.
+`docs/wiki`는 정본이 아니다. 런타임 proof, 진행 상태, 서비스별 요약을 올리지 않는다.
 
 ## 문서 우선순위
 
 문서를 해석할 때 우선순위는 다음과 같다.
 
 1. `docs/root`
-2. `contracts`와 전역 규칙
-3. `docs/services`
-4. change package
-5. generated summary
+2. `contracts`
+3. 외부 정본 repo의 문서
+4. change-control 기록
 
 하위 우선순위 문서는 상위 우선순위 문서와 충돌하면 정본으로 보지 않는다.
 
@@ -64,9 +65,11 @@ agent는 하나의 실행자다. global과 local은 agent 종류가 아니라 �
 
 `project-start` root와 scoped execution의 authority 경계는 `docs/root/authority-boundaries.md`를 우선 기준으로 본다.
 
-## services 시작 규칙
+## 서비스 상세 문서 규칙
 
-초기 서비스 목록은 비워 둔 상태로 시작한다. target service가 확정되면 `docs/services/index.md`의 명명 규칙과 `docs/services/service-template.md`를 기준으로 서비스 문서를 추가한다.
+MSA 전체는 product service로 보고, `service-*`, `front-*`, `edge-*`, `runtime-*`는 runtime slice로 부른다.
+
+runtime slice별 API, env, ECR, commit, rollout caveat는 이 repo에 복제하지 않는다. 해당 정보는 소유 repo의 정본 문서를 직접 본다.
 
 ## main 브랜치 운영 규칙
 
