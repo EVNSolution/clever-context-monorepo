@@ -24,6 +24,9 @@ MSA 기반 SaaS 복제, 고객사별 변형, 컨테이너별 이미지 운영을
 
 서비스별 문서는 [`docs/services/`](../services/) 아래에서 찾는다.
 
+이슈 해결 시 서비스 책임, public contract, deploy/runtime 기준, 운영 caveat가 바뀌면 [`docs/root/doc-governance.md`](../root/doc-governance.md)의 이슈 해결 시 context 정리 기준을 따른다. wiki는 빠른 탐색 입구일 뿐이며 service 문서를 대신하지 않는다.
+`dev` 또는 `main`으로 들어가는 PR은 context/wiki 반영 결과를 PR metadata에 먼저 묶고, issue close는 그 metadata를 참조한다.
+
 ## templates 위치
 
 템플릿 registry와 version 문서는 [`docs/templates/`](../templates/) 아래에서 찾는다.

@@ -25,3 +25,13 @@
 ## rollout/rollback 영향
 
 -
+
+## CLEVER context metadata
+
+- target branch: `dev` / `main`
+- context docs checked:
+- context wiki upload status: `updated` / `not-needed`
+- service doc update:
+- wiki update:
+- clever-context-monorepo commit/PR:
+- linked issue close evidence:
