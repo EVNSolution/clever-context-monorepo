@@ -13,13 +13,15 @@
 - spec, ui-spec, contracts, service docs가 맞지 않으면 구현을 진행하지 않는다.
 - 파이프라인별 세부 설정값은 서비스 문서에서 관리한다.
 
-## main 브랜치 임시 운영 규칙
+## main 브랜치 운영 규칙
 
-- 현재 private repo에서는 GitHub branch protection과 rulesets를 사용할 수 없다고 확인했다.
-- 그 전까지 `main` 직접 푸시는 원칙적으로 금지하고 PR 경유를 기본값으로 운영한다.
-- `main`에 머지하려면 최소 1명의 리뷰 확인을 남긴다.
-- 긴급 예외 머지가 필요하면 change id와 사유를 PR 또는 issue에 같이 남긴다.
-- 플랜 업그레이드나 공개 전환이 가능해지면 이 임시 규칙을 GitHub 보호 규칙으로 치환한다.
+- 이 repo는 public으로 운영한다.
+- `main`은 GitHub ruleset `CLEVER protect main`으로 보호한다.
+- `main` direct push, branch deletion, force push는 금지한다.
+- `main` 변경은 PR로만 올린다.
+- `main` PR은 최소 1명의 승인이 필요하다.
+- admin bypass는 `pull_request` 모드만 허용한다.
+- 긴급 변경도 PR 안에 change id와 사유를 남긴다.
 
 ## 제외
 

@@ -55,6 +55,17 @@ Use this repository for:
 - service metadata
 - contracts and interpretation context
 
+## Main Branch Contract
+
+This repository is public and its `main` branch is protected by the GitHub
+ruleset `CLEVER protect main`.
+
+- Do not push directly to `main`.
+- Use a role-prefixed branch for repository changes.
+- Open a PR into `main`.
+- `main` PRs require at least one approval.
+- Admin bypass is allowed only in `pull_request` mode.
+
 Do not treat this repository as:
 
 - the default generic startup surface

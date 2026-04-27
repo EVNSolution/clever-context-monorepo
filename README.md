@@ -69,7 +69,10 @@ agent는 하나의 실행자다. global과 local은 agent 종류가 아니라 �
 
 ## main 브랜치 운영 규칙
 
-현재 private repo에서는 GitHub branch protection과 rulesets가 막혀 있어 `main` 브랜치를 수기 PR 정책으로 운영한다. 기본값은 direct push 금지, 최소 1회 리뷰 확인, 예외 시 change id와 사유 기록이다. 상세 기준은 `docs/root/pipeline-governance.md`를 따른다.
+이 repo는 public으로 운영하며, `main`은 GitHub ruleset `CLEVER protect main`으로 보호한다.
+기본값은 direct push 금지, PR 필수, 최소 1명 승인이다.
+admin bypass는 `pull_request` 모드만 허용한다.
+상세 기준은 `docs/root/pipeline-governance.md`를 따른다.
 
 ## clever-change-control과의 관계
 
