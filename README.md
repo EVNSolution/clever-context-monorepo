@@ -13,19 +13,20 @@
 - 작업 라인과 대상 저장소가 아직 정해지지 않은 일반 시작: `clever-agent-project`
 - 현재 `clever-context-monorepo` 자체를 수정하는 작업: 여기서 계속
 
-시작 전에 먼저 아래 명령으로 로컬 3저장소 상태를 확인한다.
+시작 전에 먼저 아래 명령으로 로컬 3저장소, `gh auth status`, GitHub 계정, org membership, 원격 접근, issue/PR/ruleset 조회 가능 여부를 확인한다.
 
 ```bash
-python3 ../clever-agent-project/scripts/bootstrap_clever_work.py --cwd "$PWD" --workspace-check --json
+python3 ../clever-agent-project/scripts/bootstrap_clever_work.py --cwd "$PWD" --preflight --json
 ```
 
 현재 저장소 자체를 직접 수정하는 작업이면 아래처럼 유지보수 모드로 확인한다.
 
 ```bash
-python3 ../clever-agent-project/scripts/bootstrap_clever_work.py --cwd "$PWD" --workspace-check --current-repo-maintenance --json
+python3 ../clever-agent-project/scripts/bootstrap_clever_work.py --cwd "$PWD" --preflight --current-repo-maintenance --json
 ```
 
-결과는 아래처럼 해석한다.
+`preflight_check.ready=false`이면 시작 절차로 내려가지 않고 실패한 check를 먼저 해결한다.
+`true`이면 내부 `workspace_check.agent_action`을 아래처럼 해석한다.
 
 - `proceed-with-hard-gate`: 로컬 상태가 정상이며 시작 절차를 진행할 수 있음
 - `current-repo-maintenance`: 현재 저장소 자체를 수정하는 세션이므로 여기서 계속
