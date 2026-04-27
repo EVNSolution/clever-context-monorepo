@@ -1,21 +1,21 @@
-# Clever-ODIC-deploy Implementation Plan
+# Clever-OIDC-deploy Implementation Plan
 
 > **For agentic workers:** REQUIRED SUB-SKILL: Use superpowers:subagent-driven-development (recommended) or superpowers:executing-plans to implement this plan task-by-task. Steps use checkbox (`- [ ]`) syntax for tracking.
 
-**Goal:** `Clever-ODIC-deploy`를 `clever-context-monorepo`의 정식 deploy template family로 추가하고, root deploy governance와 reusable deploy assets를 최신 배포 정본에 맞게 정렬한다.
+**Goal:** `Clever-OIDC-deploy`를 `clever-context-monorepo`의 정식 deploy template family로 추가하고, root deploy governance와 reusable deploy assets를 최신 배포 정본에 맞게 정렬한다.
 
-**Architecture:** 새 template family 문서를 `docs/templates/Clever-ODIC-deploy/` 아래에 추가하고, registry와 root governance에서 이 family를 current deploy baseline으로 읽게 만든다. `templates/deploy/*` 자산은 같은 canonical model을 재사용하도록 재서술하고, monorepo와 MSA는 deploy model이 아니라 workload cardinality 차이로만 설명한다.
+**Architecture:** 새 template family 문서를 `docs/templates/Clever-OIDC-deploy/` 아래에 추가하고, registry와 root governance에서 이 family를 current deploy baseline으로 읽게 만든다. `templates/deploy/*` 자산은 같은 canonical model을 재사용하도록 재서술하고, monorepo와 MSA는 deploy model이 아니라 workload cardinality 차이로만 설명한다.
 
 **Tech Stack:** Markdown docs, template registry docs, reusable deploy template assets, grep/sed/git 기반 문서 검증
 
 ---
 
-### Task 1: Add the Clever-ODIC-deploy template family documents
+### Task 1: Add the Clever-OIDC-deploy template family documents
 
 **Files:**
-- Create: `docs/templates/Clever-ODIC-deploy/index.md`
-- Create: `docs/templates/Clever-ODIC-deploy/versions/v1.md`
-- Reference: `docs/superpowers/specs/2026-04-22-clever-odic-deploy-design.md`
+- Create: `docs/templates/Clever-OIDC-deploy/index.md`
+- Create: `docs/templates/Clever-OIDC-deploy/versions/v1.md`
+- Reference: `docs/superpowers/specs/2026-04-22-clever-oidc-deploy-design.md`
 - Reference: `docs/templates/msa-template/index.md`
 - Reference: `docs/templates/msa-template/versions/v1.md`
 
@@ -23,7 +23,7 @@
 
 Run:
 ```bash
-sed -n '1,260p' docs/superpowers/specs/2026-04-22-clever-odic-deploy-design.md
+sed -n '1,260p' docs/superpowers/specs/2026-04-22-clever-oidc-deploy-design.md
 sed -n '1,220p' docs/templates/msa-template/index.md
 sed -n '1,260p' docs/templates/msa-template/versions/v1.md
 ```
@@ -34,9 +34,9 @@ Expected:
 
 - [ ] **Step 2: Create the family entry document**
 
-Create `docs/templates/Clever-ODIC-deploy/index.md` with:
+Create `docs/templates/Clever-OIDC-deploy/index.md` with:
 ```md
-# Clever-ODIC-deploy
+# Clever-OIDC-deploy
 
 ## 목적
 
@@ -57,13 +57,13 @@ Create `docs/templates/Clever-ODIC-deploy/index.md` with:
 
 - [ ] **Step 3: Create the concrete v1 document**
 
-Create `docs/templates/Clever-ODIC-deploy/versions/v1.md` with:
+Create `docs/templates/Clever-OIDC-deploy/versions/v1.md` with:
 ```md
-# Clever-ODIC-deploy v1
+# Clever-OIDC-deploy v1
 
 ## version meta
 
-- `template_id`: `Clever-ODIC-deploy`
+- `template_id`: `Clever-OIDC-deploy`
 - `version`: `v1`
 - `status`: `recommended`
 - `project_type`: `monorepo single-workload / msa multi-workload`
@@ -82,9 +82,9 @@ Include:
 
 Run:
 ```bash
-rg -n "Clever-ODIC-deploy|image-build-once-central-release|single workload|multiple workload|public contract probe" \
-  docs/templates/Clever-ODIC-deploy/index.md \
-  docs/templates/Clever-ODIC-deploy/versions/v1.md
+rg -n "Clever-OIDC-deploy|image-build-once-central-release|single workload|multiple workload|public contract probe" \
+  docs/templates/Clever-OIDC-deploy/index.md \
+  docs/templates/Clever-OIDC-deploy/versions/v1.md
 ```
 
 Expected:
@@ -94,8 +94,8 @@ Expected:
 
 Run:
 ```bash
-git add docs/templates/Clever-ODIC-deploy/index.md docs/templates/Clever-ODIC-deploy/versions/v1.md
-git commit -m "Add Clever-ODIC-deploy template family"
+git add docs/templates/Clever-OIDC-deploy/index.md docs/templates/Clever-OIDC-deploy/versions/v1.md
+git commit -m "Add Clever-OIDC-deploy template family"
 ```
 
 ### Task 2: Register the template and align root governance
@@ -119,11 +119,11 @@ Expected:
 - registry entry fields와 root governance phrasing을 확인한다.
 - current runtime truth wording을 그대로 재사용할 부분을 고른다.
 
-- [ ] **Step 2: Add Clever-ODIC-deploy to the template registry**
+- [ ] **Step 2: Add Clever-OIDC-deploy to the template registry**
 
 Update `docs/templates/index.md` to add a new entry with:
 ```md
-### `Clever-ODIC-deploy`
+### `Clever-OIDC-deploy`
 
 - status: `recommended`
 - latest version: `v1`
@@ -139,7 +139,7 @@ Also note:
 - [ ] **Step 3: Align deploy-template-governance to the new baseline**
 
 Update `docs/root/deploy-template-governance.md` so it explicitly states:
-- current deploy baseline is read through `Clever-ODIC-deploy`
+- current deploy baseline is read through `Clever-OIDC-deploy`
 - app repo build / central release / runtime inventory split is the reusable model
 - monorepo and MSA differ only by workload cardinality
 
@@ -147,7 +147,7 @@ Update `docs/root/deploy-template-governance.md` so it explicitly states:
 
 Run:
 ```bash
-rg -n "Clever-ODIC-deploy|image-build-once-central-release|workload cardinality|current deploy baseline|runtime inventory" \
+rg -n "Clever-OIDC-deploy|image-build-once-central-release|workload cardinality|current deploy baseline|runtime inventory" \
   docs/templates/index.md \
   docs/root/deploy-template-governance.md
 ```
@@ -161,7 +161,7 @@ Expected:
 Run:
 ```bash
 git add docs/templates/index.md docs/root/deploy-template-governance.md
-git commit -m "Register Clever-ODIC-deploy baseline"
+git commit -m "Register Clever-OIDC-deploy baseline"
 ```
 
 ### Task 3: Rework reusable deploy assets to match the canonical model
@@ -171,7 +171,7 @@ git commit -m "Register Clever-ODIC-deploy baseline"
 - Modify: `templates/deploy/checklist.md`
 - Modify: `templates/deploy/env-template.example`
 - Modify: `templates/deploy/override-guide.md`
-- Reference: `docs/templates/Clever-ODIC-deploy/versions/v1.md`
+- Reference: `docs/templates/Clever-OIDC-deploy/versions/v1.md`
 
 - [ ] **Step 1: Read the current deploy assets**
 
@@ -232,14 +232,14 @@ Expected:
 Run:
 ```bash
 git add templates/deploy/README.md templates/deploy/checklist.md templates/deploy/env-template.example templates/deploy/override-guide.md
-git commit -m "Align deploy assets with Clever-ODIC-deploy"
+git commit -m "Align deploy assets with Clever-OIDC-deploy"
 ```
 
 ### Task 4: Run final document consistency checks
 
 **Files:**
-- Verify: `docs/templates/Clever-ODIC-deploy/index.md`
-- Verify: `docs/templates/Clever-ODIC-deploy/versions/v1.md`
+- Verify: `docs/templates/Clever-OIDC-deploy/index.md`
+- Verify: `docs/templates/Clever-OIDC-deploy/versions/v1.md`
 - Verify: `docs/templates/index.md`
 - Verify: `docs/root/deploy-template-governance.md`
 - Verify: `templates/deploy/README.md`
@@ -251,8 +251,8 @@ git commit -m "Align deploy assets with Clever-ODIC-deploy"
 
 Run:
 ```bash
-rg -n "Clever-ODIC-deploy|image-build-once-central-release|single workload|multiple workloads|public contract probe|runtime inventory" \
-  docs/templates/Clever-ODIC-deploy \
+rg -n "Clever-OIDC-deploy|image-build-once-central-release|single workload|multiple workloads|public contract probe|runtime inventory" \
+  docs/templates/Clever-OIDC-deploy \
   docs/templates/index.md \
   docs/root/deploy-template-governance.md \
   templates/deploy
@@ -265,7 +265,7 @@ Expected:
 
 Run:
 ```bash
-git diff -- docs/templates/Clever-ODIC-deploy docs/templates/index.md docs/root/deploy-template-governance.md templates/deploy
+git diff -- docs/templates/Clever-OIDC-deploy docs/templates/index.md docs/root/deploy-template-governance.md templates/deploy
 ```
 
 Expected:
@@ -285,8 +285,8 @@ Expected:
 
 Run:
 ```bash
-git add docs/templates/Clever-ODIC-deploy docs/templates/index.md docs/root/deploy-template-governance.md templates/deploy
-git commit -m "Document Clever-ODIC-deploy baseline"
+git add docs/templates/Clever-OIDC-deploy docs/templates/index.md docs/root/deploy-template-governance.md templates/deploy
+git commit -m "Document Clever-OIDC-deploy baseline"
 ```
 
 - [ ] **Step 5: Push after review**
@@ -297,4 +297,4 @@ git push origin main
 ```
 
 Expected:
-- `main`에 `Clever-ODIC-deploy` template baseline 문서가 반영된다.
+- `main`에 `Clever-OIDC-deploy` template baseline 문서가 반영된다.

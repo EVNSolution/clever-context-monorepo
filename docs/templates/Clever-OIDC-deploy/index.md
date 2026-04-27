@@ -1,8 +1,8 @@
-# Clever-ODIC-deploy
+# Clever-OIDC-deploy
 
 ## 목적
 
-이 문서는 `Clever-ODIC-deploy` family entry다.
+이 문서는 `Clever-OIDC-deploy` family entry다.
 
 이 family는 CLEVER의 현재 deploy 정본을 template registry에서 재사용 가능한 형태로 올린 entry다.
 
@@ -15,7 +15,7 @@
 
 ## registry 요약
 
-- `template_id`: `Clever-ODIC-deploy`
+- `template_id`: `Clever-OIDC-deploy`
 - `current_version`: `v1`
 - `status`: `recommended`
 - `use_case`: current CLEVER deploy baseline for monorepo and MSA
@@ -75,7 +75,7 @@
 
 1. `docs/root/deploy-template-governance.md`
 2. `docs/root/central-deploy-runtime-current-truth.md`
-3. `docs/templates/Clever-ODIC-deploy/versions/v1.md`
+3. `docs/templates/Clever-OIDC-deploy/versions/v1.md`
 4. `templates/deploy/README.md`
 5. 해당 서비스 문서
 

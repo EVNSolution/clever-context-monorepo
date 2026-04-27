@@ -4,13 +4,13 @@
 
 이 디렉터리는 공통 deploy baseline을 반복 가능하게 쓰기 위한 자산 모음이다.
 
-이 자산은 `Clever-ODIC-deploy` family가 설명하는 current deploy baseline을 반복 가능하게 쓰기 위한 boilerplate다.
+이 자산은 `Clever-OIDC-deploy` family가 설명하는 current deploy baseline을 반복 가능하게 쓰기 위한 boilerplate다.
 
 정본 규칙은 아래 순서로 읽는다.
 
 1. `docs/root/deploy-template-governance.md`
 2. `docs/root/central-deploy-runtime-current-truth.md`
-3. `docs/templates/Clever-ODIC-deploy/versions/v1.md`
+3. `docs/templates/Clever-OIDC-deploy/versions/v1.md`
 
 ## 포함 자산
 
