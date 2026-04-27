@@ -30,18 +30,18 @@
 기본 형식은 아래다.
 
 ```text
-PR-MERGE <owner>/<repo>#<pr-number>: <pr-title>
+Merge pull request #<pr-number> from <owner>/<source-branch>
 ```
 
-에이전트가 merge할 때는 squash merge subject를 명시한다.
+에이전트가 squash merge를 사용할 때도 GitHub 기본형에 가까운 subject를 명시한다.
 
 ```bash
 gh pr merge <pr-number> --squash \
-  --subject "PR-MERGE <owner>/<repo>#<pr-number>: <pr-title>" \
+  --subject "Merge pull request #<pr-number> from <owner>/<source-branch>" \
   --body-file <merge-body-file>
 ```
 
-merge body에는 merge summary, validation evidence, wiki/service context update result를 남긴다.
+merge body 첫 줄에는 PR title을 남기고, 이어서 merge summary, validation evidence, wiki/service context update result를 남긴다.
 일반 작업 commit 제목을 그대로 main merge commit 제목으로 쓰지 않는다.
 
 ## 제외
