@@ -19,7 +19,8 @@
 - `main`은 GitHub ruleset `CLEVER protect main`으로 보호한다.
 - `main` direct push, branch deletion, force push는 금지한다.
 - `main` 변경은 PR로만 올린다.
-- `main` PR은 최소 1명의 승인이 필요하다.
+- `main` PR의 필수 승인 수는 0명이다.
+- merge/write는 repo admin 권한자만 수행한다.
 - admin bypass는 `pull_request` 모드만 허용한다.
 - 긴급 변경도 PR 안에 change id와 사유를 남긴다.
 
