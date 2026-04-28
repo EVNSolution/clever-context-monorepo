@@ -37,9 +37,10 @@
 
 - status: `candidate`
 - latest version: `v1`
-- use_case: package-style MSA template family registry
-- deploy_profile: `image-build-once-and-promote`
-- summary: MSA archetype family entry for repo/runtime slice templates
+- use_case: MSA umbrella development repository template lineage
+- deploy_profile: `not-applicable-development-template`
+- summary: development repo structure, docs authority, and runtime slice boundary template for MSA product services
+- template_repository: `https://github.com/EVNSolution/clever-msa-repo-template`
 - 문서:
   - [`docs/templates/msa-template/index.md`](./msa-template/index.md)
   - [`docs/templates/msa-template/versions/v1.md`](./msa-template/versions/v1.md)
