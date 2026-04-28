@@ -11,10 +11,11 @@ runtime proof, 서비스별 API/env/ECR/commit 요약, target repo 문서 복사
 1. [`authority-boundaries.md`](./authority-boundaries.md): 3-repo authority 경계
 2. [`doc-governance.md`](./doc-governance.md): 이 repo에 둘 수 있는 문서와 둘 수 없는 문서
 3. [`domain-glossary.md`](./domain-glossary.md): product service, runtime slice, workload 용어
-4. [`agent-runtime-governance.md`](./agent-runtime-governance.md): agent 실행 기준
-5. 필요한 template lineage만 [`docs/templates`](../templates/)에서 확인한다.
-6. CLEVER MSA platform 사실은 [`clever-msa-platform-workspace.md`](./clever-msa-platform-workspace.md)의 pointer를 따라 원 repo에서 확인한다.
-7. 사용자가 명시적으로 요청한 외부 monorepo 작성 pointer는 [`monorepo-write-pointers.md`](./monorepo-write-pointers.md)에서 확인한다.
+4. [`msa-boundary-governance.md`](./msa-boundary-governance.md): MSA 책임·데이터·API edge 경계
+5. [`agent-runtime-governance.md`](./agent-runtime-governance.md): agent 실행 기준
+6. 필요한 template lineage만 [`docs/templates`](../templates/)에서 확인한다.
+7. CLEVER MSA platform 사실은 [`clever-msa-platform-workspace.md`](./clever-msa-platform-workspace.md)의 pointer를 따라 원 repo에서 확인한다.
+8. 사용자가 명시적으로 요청한 외부 monorepo 작성 pointer는 [`monorepo-write-pointers.md`](./monorepo-write-pointers.md)에서 확인한다.
 
 ## 위치 안내
 
