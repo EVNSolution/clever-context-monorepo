@@ -161,6 +161,13 @@ Use `fixes`, `closes`, or similar GitHub keywords only when the PR merge is
 intended to close the referenced issue. Use plain issue mentions for context
 links.
 
+Retroactive trace repair follows the same control-plane rule: if completed
+target work is missing a scoped change-control anchor, open a retro issue in
+`clever-change-control`, record root/target/branch/PR with
+`parallel work decision: done`, backlink the target issue, then close the retro
+issue as completed. This records audit evidence only and does not reopen the
+completed implementation scope.
+
 ## Read Order For Repo-Local Work
 
 When the task is specifically about this repository, read in this order:
