@@ -71,7 +71,7 @@ MSA 전체는 product service로 보고, `service-*`, `front-*`, `edge-*`, `runt
 
 MSA는 runtime slice를 하나 더 붙이는 구조가 아니라, 책임·데이터 소유권·API
 edge 계약을 먼저 나눈 뒤 workload와 연결하는 구조다. 전역 판단 기준은
-`docs/root/msa-boundary-governance.md`를 따른다.
+[`docs/root/msa-boundary-governance.md`](./docs/root/msa-boundary-governance.md)를 따른다.
 
 runtime slice별 API, env, ECR, commit, rollout caveat는 이 repo에 복제하지 않는다. 해당 정보는 소유 repo의 정본 문서를 직접 본다.
 

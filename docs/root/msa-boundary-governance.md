@@ -45,7 +45,7 @@ runtime slice는 아래 질문에 답할 수 있어야 한다.
 편의상 컨트롤러, cron, adapter, 화면을 하나 더 붙이는 것만으로는 새 runtime
 slice가 되지 않는다.
 
-## 새 service/slice 추가 가능성 지표
+## 새 runtime slice 추가 가능성 지표
 
 에이전트가 "이 기능은 새 service의 책임과 권한이다"라고 판단할 수 있다면,
 새 runtime slice 추가 가능성도 열어둔다. 단, 제안은 감이 아니라 아래 지표로
@@ -78,7 +78,7 @@ slice가 되지 않는다.
 
 ## 에이전트 제안 기록 기준
 
-에이전트가 새 service/slice 후보를 제안할 때는 아래 값을 짧게 남긴다.
+에이전트가 새 runtime slice 또는 별도 service 후보를 제안할 때는 아래 값을 짧게 남긴다.
 
 - proposed slice name
 - responsibility statement: 이 slice가 끝까지 책임지는 일
@@ -89,8 +89,8 @@ slice가 되지 않는다.
 - alternatives rejected: 기존 slice 확장, read model, API edge 확장으로 충분하지 않은 이유
 - owner docs to update: 소유 repo의 정본 문서 위치
 
-위 값 중 핵심 authority statement와 alternatives rejected가 비어 있으면 새 slice
-제안으로 보지 않는다.
+위 값 중 핵심 authority statement 또는 alternatives rejected 중 하나라도 비어
+있으면 새 slice 제안으로 보지 않는다.
 
 ## 데이터와 테이블 경계
 

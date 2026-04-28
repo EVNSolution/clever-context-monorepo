@@ -19,5 +19,7 @@
 
 runtime slice를 새로 만들거나 나눌 때는
 [`msa-boundary-governance.md`](./msa-boundary-governance.md)를 먼저 본다.
-새 slice는 독립 책임, 데이터/table ownership, API edge 또는 release/workload
-경계가 있을 때만 정당화된다.
+새 slice는 독립 책임과 authority statement가 먼저 있어야 하며, 데이터/table
+ownership, API edge authority, release/workload 경계 중 무엇이 기존 slice
+확장만으로 부족한지 설명될 때만 정당화된다. API edge 추가만으로는 새 slice가
+아니라 contract/API edge 변경으로 먼저 본다.
