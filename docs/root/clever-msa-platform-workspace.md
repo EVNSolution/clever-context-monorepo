@@ -7,6 +7,10 @@
 CLEVER MSA platform은 product service 단위에서 하나로 본다. 그 안의
 `service-*`, `front-*`, `edge-*`, `runtime-*`는 runtime slice다.
 
+MSA 경계 판단은 [`msa-boundary-governance.md`](./msa-boundary-governance.md)를
+따른다. 실제 slice별 책임, 테이블, API, release inventory는 아래 Current
+Authority 문서가 소유한다.
+
 ## Current Authority
 
 CLEVER MSA platform의 구조, runtime slice, deploy, boundary, contract 사실은
