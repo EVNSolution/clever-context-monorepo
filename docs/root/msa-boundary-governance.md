@@ -45,6 +45,53 @@ runtime slice는 아래 질문에 답할 수 있어야 한다.
 편의상 컨트롤러, cron, adapter, 화면을 하나 더 붙이는 것만으로는 새 runtime
 slice가 되지 않는다.
 
+## 새 service/slice 추가 가능성 지표
+
+에이전트가 "이 기능은 새 service의 책임과 권한이다"라고 판단할 수 있다면,
+새 runtime slice 추가 가능성도 열어둔다. 단, 제안은 감이 아니라 아래 지표로
+설명해야 한다.
+
+새 runtime slice 후보로 볼 수 있는 지표:
+
+- 독립 책임: 기존 slice 책임 문장에 억지로 넣으면 의미가 흐려지는 business capability가 있다.
+- 데이터 권한: 새 write authority, table ownership, 외부 provider 상태 정본, 또는 audit trail 정본이 필요하다.
+- API edge 권한: 둘 이상의 consumer가 안정적인 public/internal contract로 접근해야 한다.
+- 권한·보안 경계: authentication, authorization, PII, credential, compliance 책임이 기존 slice와 다르다.
+- release 경계: 기존 slice와 다른 배포 cadence, rollback 단위, health check, smoke proof가 필요하다.
+- 운영 경계: scaling, failure isolation, SLO, queue/worker lifecycle이 기존 slice와 다르다.
+- 변경 지속성: 임시 glue가 아니라 후속 기능이 같은 책임 아래 계속 쌓일 가능성이 높다.
+- 소유자 경계: 운영자, 도메인 owner, 또는 maintainer가 기존 slice와 다르게 책임질 필요가 있다.
+
+반대로 아래에 가까우면 새 slice가 아니라 기존 slice 변경이나 API contract 확장으로
+먼저 본다.
+
+- 단일 화면, 단일 controller, 단일 cron, 단일 adapter 추가
+- 기존 owning slice의 table을 그대로 CRUD만 하는 얇은 wrapper
+- release, health, rollback 단위가 기존 slice와 완전히 같다
+- consumer가 하나뿐이고 contract가 아직 안정적이지 않다
+- 책임 문장이 "무엇을 소유한다"가 아니라 "어디에 연결한다"로만 설명된다
+- 임시 마이그레이션 또는 일회성 data patch에 가깝다
+
+새 slice 추가는 금지가 아니다. 충분한 지표가 있으면 허용한다. 다만 추가 전에
+기존 slice 확장, read model 분리, API edge 확장, shared contract 보강을
+대안으로 검토하고 왜 부족한지 남긴다.
+
+## 에이전트 제안 기록 기준
+
+에이전트가 새 service/slice 후보를 제안할 때는 아래 값을 짧게 남긴다.
+
+- proposed slice name
+- responsibility statement: 이 slice가 끝까지 책임지는 일
+- authority statement: 데이터, API contract, 외부 provider, 운영 권한 중 무엇을 소유하는지
+- consumers and API edge: 누가 어떤 edge/contract로 접근하는지
+- owned data boundary: 새 table, read model, 외부 상태 정본 여부
+- release boundary: workload, health, rollback 단위가 기존 slice와 다른지
+- alternatives rejected: 기존 slice 확장, read model, API edge 확장으로 충분하지 않은 이유
+- owner docs to update: 소유 repo의 정본 문서 위치
+
+위 값 중 핵심 authority statement와 alternatives rejected가 비어 있으면 새 slice
+제안으로 보지 않는다.
+
 ## 데이터와 테이블 경계
 
 - write authority는 한 slice가 소유한다.
