@@ -11,25 +11,15 @@
 
 ## Preflight Gate
 
-작업 시작 질문, `project-start` 초안, repo bootstrap, team-work automation으로 내려가기 전에는 `clever-agent-project`의 preflight를 먼저 통과한다.
+The startup/preflight authority lives in `clever-agent-project`. This governance
+document records the ownership boundary only; it does not duplicate the startup
+command, user GitHub-login prompt, preflight checklist, or admin-preflight
+procedure.
 
-```bash
-python3 ../clever-agent-project/scripts/bootstrap_clever_work.py --cwd "$PWD" --preflight --json
-```
-
-preflight는 `gh auth status`, GitHub login `OziinG`, `EVNSolution` org membership, 3레포 로컬 workspace, `EVNSolution/*` origin, clean worktree, remote fetch, issue/PR/ruleset read access를 확인한다.
-
-GitHub admin 권한이 필요한 target repo ruleset/protection 작업 전에는 대상 repo를 지정해 admin preflight를 다시 통과한다.
-
-```bash
-python3 ../clever-agent-project/scripts/bootstrap_clever_work.py \
-  --cwd "$PWD" \
-  --admin-preflight \
-  --target-repo-full-name EVNSolution/<target-repo> \
-  --json
-```
-
-새 repo 생성 권한은 destructive create 없이 완전히 증명할 수 없으므로, preflight는 membership과 API 접근을 확인하고 실제 생성 성공은 `gh repo create` 결과로 확정한다.
+Agents must use `clever-agent-project/AGENTS.md` and its bootstrap helper as the
+canonical startup surface. The helper reads the complete local three-repository
+workspace, so this repository does not need a parallel copy of the startup
+procedure.
 
 ### root intake
 

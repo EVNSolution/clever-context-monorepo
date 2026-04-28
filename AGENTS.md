@@ -19,37 +19,19 @@ Short version:
 - generic startup: redirect to `clever-agent-project`
 - repo-local maintenance: stay in `clever-context-monorepo`
 
-## Workspace Contract
+## Startup Pointer
 
-CLEVER expects a local three-repository workspace:
+The startup/preflight authority lives in `clever-agent-project`. Do not duplicate
+the command, GitHub login prompt, preflight checklist, or `workspace_check`
+branch table here.
 
-1. `clever-agent-project`
-2. `clever-context-monorepo`
-3. `clever-change-control`
+For generic CLEVER startup, move to the sibling `clever-agent-project` checkout
+and follow its `AGENTS.md`. The bootstrap helper there reads the complete local
+three-repository workspace, including this repository.
 
-Before doing real work, run the automatic preflight check from the current session:
-
-```bash
-python3 ../clever-agent-project/scripts/bootstrap_clever_work.py --cwd "$PWD" --preflight --json
-```
-
-If the session is explicitly about editing this repository itself, run:
-
-```bash
-python3 ../clever-agent-project/scripts/bootstrap_clever_work.py --cwd "$PWD" --preflight --current-repo-maintenance --json
-```
-
-The preflight must verify `gh auth status`, GitHub login `OziinG`,
-`EVNSolution` org membership, control-plane remotes, clean worktrees, remote
-fetch access, and issue/PR/ruleset read access. If `preflight_check.ready` is
-false, stop before startup work and report the failed checks.
-
-If it is true, interpret `workspace_check.agent_action` like this:
-
-- `proceed-with-hard-gate`: the workspace is complete and startup may continue
-- `current-repo-maintenance`: this repository itself is the target, so stay here
-- `switch-to-clever-agent-project`: this is generic startup work, so move to `clever-agent-project`
-- `stop-and-fix-workspace`: the local workspace is incomplete, so do not continue as if startup were healthy
+For repo-local maintenance, stay in this repository after the
+`clever-agent-project` preflight identifies this repository as the intended
+control-plane maintenance target.
 
 ## What This Repository Owns
 
