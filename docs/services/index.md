@@ -18,3 +18,9 @@ runtime slice 정본은 아래를 따른다.
 
 새 runtime slice나 boundary 변경은 소유 repo의 정본 문서에서 먼저 반영한다.
 이 repo에는 정본 위치가 바뀐 경우에만 pointer를 갱신한다.
+
+## Product service pointers
+
+| service_id | owner_repo | context pointer | current anchor | template lineage |
+| --- | --- | --- | --- | --- |
+| `thundercrew-domain` | `EVNSolution/thundercrew-domain` | [`docs/services/thundercrew-domain/index.md`](./thundercrew-domain/index.md) | `EVNSolution/thundercrew-domain#106`, `EVNSolution/clever-change-control#98` | `Clever-OIDC-deploy` with existing-EC2 override; `msa-template` boundary principles |
