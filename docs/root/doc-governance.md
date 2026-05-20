@@ -28,7 +28,7 @@
 
 아래는 이 repo에 만들지 않는다.
 
-- `docs/services/<slice>/index.md`
+- target repo 상세를 복제하는 `docs/services/<slice>/index.md`
 - 작업 계획이나 implementation plan
 - 진행 중 design draft
 - runtime current status
