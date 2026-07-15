@@ -17,7 +17,7 @@ environment values, or release artifacts from the target repository.
 | current_mvp_anchor | <https://github.com/EVNSolution/clever-change-control/issues/145>, <https://github.com/EVNSolution/clever-driver-app/issues/72>, <https://github.com/EVNSolution/clever-driver-app/issues/73> |
 | context_issue | <https://github.com/EVNSolution/clever-context-monorepo/issues/23> |
 | target_runtime_docs | <https://github.com/EVNSolution/clever-driver-app/blob/dev/README.md> and <https://github.com/EVNSolution/clever-driver-app/tree/dev/docs> |
-| related_backend | <https://github.com/EVNSolution/shopify-clever/tree/main/apps/delivery-api> |
+| related_backend | <https://github.com/EVNSolution/clever-route-server/tree/main/apps/delivery-api> |
 | related_shopify_admin | <https://github.com/EVNSolution/shopify-clever/tree/main/apps/shopify-app> |
 | platform_lineage | Expo / React Native native iOS and Android app bootstrap under CLEVER target-repo workflow |
 
@@ -29,6 +29,9 @@ environment values, or release artifacts from the target repository.
   and controlled distribution evidence.
 - Invite-code verification and phone identity are app entry mechanisms, not a
   replacement for server-issued driver access and tenant/shop scoping.
+- The phone-owned driver account name is global across shops. Each Shopify
+  store's `Driver.displayName` is a merchant-scoped alias, and neither value is
+  synchronized or backfilled into the other.
 - The app owns driver-facing UX, native permission prompts, SecureStore token
   handling, app-side offline retry/discard behavior, and mobile release evidence
   runbooks. It does not own Shopify data, route assignment authority,
@@ -37,9 +40,9 @@ environment values, or release artifacts from the target repository.
   consent records, driver events, proof-media metadata/storage contracts, and
   cleanup evidence. The driver app must use the server driver APIs rather than
   Shopify APIs directly.
-- Future app-tab server work should be exposed as delivery API contracts before
-  the app treats route history, earnings, profile update, or account deletion as
-  live server-backed features.
+- Account profile name updates use the paired delivery API. Future route history,
+  earnings, or account deletion work must also be exposed as delivery API
+  contracts before the app treats those features as live.
 
 ## Do not store here
 
@@ -58,6 +61,7 @@ environment values, or release artifacts from the target repository.
 - Target repository README: <https://github.com/EVNSolution/clever-driver-app/blob/dev/README.md>
 - Product brief and scenario plan: <https://github.com/EVNSolution/clever-driver-app/blob/dev/docs/project-brief.md>
 - App-side API/runtime flow: <https://github.com/EVNSolution/clever-driver-app/blob/dev/docs/route-access-flow.md>
+- Driver account authentication and profile contract: <https://github.com/EVNSolution/clever-route-server/blob/main/apps/delivery-api/docs/api/driver-auth.md>
 - Release readiness and evidence gates: <https://github.com/EVNSolution/clever-driver-app/blob/dev/docs/release-readiness.md>
 - Physical-device smoke runbook: <https://github.com/EVNSolution/clever-driver-app/blob/dev/docs/physical-device-smoke-runbook.md>
 - Expo app identity config: <https://github.com/EVNSolution/clever-driver-app/blob/dev/app.json>
