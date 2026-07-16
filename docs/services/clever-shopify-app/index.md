@@ -28,6 +28,9 @@ the target repository.
 - The Shopify app owns merchant/admin UX, Shopify authentication/session storage,
   order synchronization entry points, route planning UI, driver invite/admin
   actions, and App Store review-facing behavior.
+- The route admin surface shows every materialized child immediately and uses
+  `Ready`, `In progress`, and `Completed` as the canonical execution labels;
+  legacy pre-execution statuses are presented as `Ready`.
 - `Driver.displayName` is a merchant/store-scoped operational alias. It is not
   the driver's phone-owned account name and must not update or backfill it.
 - The Shopify app must not become the long-term source of driver mobile runtime
