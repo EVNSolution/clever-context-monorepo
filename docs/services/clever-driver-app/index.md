@@ -36,6 +36,9 @@ environment values, or release artifacts from the target repository.
   handling, app-side offline retry/discard behavior, and mobile release evidence
   runbooks. It does not own Shopify data, route assignment authority,
   proof-media metadata persistence, or object-storage credentials.
+- Route lists use the server lifecycle labels `Ready`, `In progress`, and
+  `Completed`. Assignment does not advance status; the driver's explicit start
+  and completion actions record the corresponding lifecycle events.
 - The paired delivery API owns companies/shops, drivers, route assignments,
   consent records, driver events, proof-media metadata/storage contracts, and
   cleanup evidence. The driver app must use the server driver APIs rather than

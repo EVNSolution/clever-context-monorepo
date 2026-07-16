@@ -28,6 +28,10 @@ repository.
 - Admin-facing APIs cover delivery orders, route planning, route assignment,
   driver invite/access operations, and synchronization boundaries used by the
   Shopify embedded app.
+- Route execution starts at child creation: every created child is `Ready`
+  without driver, stop, or publish prerequisites. Driver assignment is
+  lifecycle-neutral; `ROUTE_STARTED` moves it to `In progress`, and
+  `ROUTE_COMPLETED` moves it to `Completed`.
 - Driver-facing APIs cover invite verification, bearer access, consent records,
   assigned-route reads, driver events, proof-media upload metadata/storage,
   scoped proof-media read access, scan rejection hooks, monitoring hooks, and
