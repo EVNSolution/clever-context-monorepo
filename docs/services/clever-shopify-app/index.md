@@ -28,6 +28,11 @@ the target repository.
 - The Shopify app owns merchant/admin UX, Shopify authentication/session storage,
   order synchronization entry points, route planning UI, driver invite/admin
   actions, and App Store review-facing behavior.
+- Shopify order and customer integrations are query-only for K-food and
+  development stores. Operational corrections are written through the paired
+  delivery API to the CLEVER database, not back to Shopify. App-owned
+  `AppInstallation` metafields remain limited to application settings such as
+  departure location and do not store order or customer corrections.
 - The route admin surface shows every materialized child immediately and uses
   `Ready`, `In progress`, and `Completed` as the canonical execution labels;
   legacy pre-execution statuses are presented as `Ready`.

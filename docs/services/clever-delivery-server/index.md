@@ -28,6 +28,9 @@ repository.
 - Admin-facing APIs cover delivery orders, route planning, route assignment,
   driver invite/access operations, and synchronization boundaries used by the
   Shopify embedded app.
+- Shopify order and customer records are immutable upstream source data for
+  K-food and development stores. Synchronization is one-way from Shopify into
+  CLEVER, and operator corrections are stored only in the CLEVER database.
 - Route execution starts at child creation: every created child is `Ready`
   without driver, stop, or publish prerequisites. Driver assignment is
   lifecycle-neutral; `ROUTE_STARTED` moves it to `In progress`, and
