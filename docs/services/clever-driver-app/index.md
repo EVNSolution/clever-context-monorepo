@@ -48,9 +48,10 @@ environment values, or release artifacts from the target repository.
   consent records, driver events, proof-media metadata/storage contracts, and
   cleanup evidence. The driver app must use the server driver APIs rather than
   Shopify APIs directly.
-- Account profile name updates use the paired delivery API. Future route history,
-  earnings, or account deletion work must also be exposed as delivery API
-  contracts before the app treats those features as live.
+- Account profile name updates and account deletion requests use the global
+  `DriverAccount` bearer through the paired delivery API, never a Store route
+  token. A deletion request is an account-scoped audit request, not immediate
+  deletion of route, proof, or consent history.
 
 ## Do not store here
 
