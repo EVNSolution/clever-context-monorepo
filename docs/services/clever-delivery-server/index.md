@@ -39,6 +39,10 @@ repository.
   assigned-route reads, driver events, proof-media upload metadata/storage,
   scoped proof-media read access, scan rejection hooks, monitoring hooks, and
   retention cleanup evidence.
+- Assigned-route reads provide the server-authoritative payment method, exact
+  order total and currency, and normalized payment status required for cash or
+  transfer collection decisions. The driver app consumes this context as
+  read-only data and does not derive totals or mutate payment state.
 - A driver's phone-owned account name is global across shops. A Shopify store's
   `Driver.displayName` is a separate merchant-scoped alias; the server does not
   synchronize or backfill either value into the other.

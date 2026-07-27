@@ -36,6 +36,11 @@ environment values, or release artifacts from the target repository.
   handling, app-side offline retry/discard behavior, and mobile release evidence
   runbooks. It does not own Shopify data, route assignment authority,
   proof-media metadata persistence, or object-storage credentials.
+- Stop payment collection context is read-only in the app. The paired delivery
+  API supplies the payment method, exact order total and currency, and
+  normalized payment status; the app presents those values in stop details and
+  active-route notifications without calculating totals or changing payment
+  state.
 - Route lists use the server lifecycle labels `Ready`, `In progress`, and
   `Completed`. Assignment does not advance status; the driver's explicit start
   and completion actions record the corresponding lifecycle events.
