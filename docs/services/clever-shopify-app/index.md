@@ -17,7 +17,7 @@ the target repository.
 | product_scope | Shopify embedded admin app for CLEVER merchants: order intake, delivery-date filtering, route planning, route detail, driver invite/access, and operational navigation surfaces |
 | naming_authority | <https://github.com/EVNSolution/shopify-clever/blob/main/NAMING.md> |
 | paired_delivery_api | <https://github.com/EVNSolution/clever-route-server/tree/main/apps/delivery-api> |
-| related_mobile_runtime | <https://github.com/EVNSolution/clever-driver-app> |
+| related_mobile_runtime | <https://github.com/EVNSolution/clever-routes-app> |
 | deploy_lineage | React Router Shopify embedded app, Prisma session storage, Shopify CLI config split for production/public and dev/custom-store runtimes |
 
 ## Interpretation
