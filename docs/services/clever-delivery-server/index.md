@@ -39,6 +39,13 @@ repository.
   assigned-route reads, driver events, proof-media upload metadata/storage,
   scoped proof-media read access, scan rejection hooks, monitoring hooks, and
   retention cleanup evidence.
+- The global `DriverAccount` owns native Push installations. The server accepts
+  installation registration and revocation only through account bearer access,
+  while Store-specific driver references remain route-assignment metadata.
+- Route Push is a non-authoritative notification channel. Successful route
+  mutations may emit PII-free assignment, change, cancellation, or release
+  signals, but delivery failure does not roll back the mutation and clients
+  must refresh the server route contract before acting.
 - The server owns the public CLEVER Routes direct-distribution boundary:
   `/routes-app` and `/routes-app/release/android` for current builds, with
   `/driver-app` compatibility for the legacy Android identity. The release

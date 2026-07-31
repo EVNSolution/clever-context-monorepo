@@ -16,7 +16,7 @@ environment values, or release artifacts from the target repository.
 | display_name | `CLEVER Routes` |
 | identity_registry | <https://github.com/EVNSolution/clever-context-monorepo/blob/main/docs/services/mobile-app-identities.md> |
 | product_scope | native iPhone/Android Shopify delivery app for invite-based access, driver identity, consent, assigned-route view, active-delivery location tracking, proof capture, offline retry, and route completion cleanup |
-| current_mvp_anchor | <https://github.com/EVNSolution/clever-change-control/issues/145>, <https://github.com/EVNSolution/clever-routes-app/issues/72>, <https://github.com/EVNSolution/clever-routes-app/issues/73> |
+| current_mvp_anchor | <https://github.com/EVNSolution/clever-change-control/issues/145>, <https://github.com/EVNSolution/clever-change-control/issues/242>, <https://github.com/EVNSolution/clever-routes-app/issues/72>, <https://github.com/EVNSolution/clever-routes-app/issues/73>, <https://github.com/EVNSolution/clever-routes-app/issues/173> |
 | context_issue | <https://github.com/EVNSolution/clever-context-monorepo/issues/23> |
 | target_runtime_docs | <https://github.com/EVNSolution/clever-routes-app/blob/dev/README.md> and <https://github.com/EVNSolution/clever-routes-app/tree/dev/docs> |
 | related_backend | <https://github.com/EVNSolution/clever-route-server/tree/main/apps/delivery-api> |
@@ -39,6 +39,12 @@ environment values, or release artifacts from the target repository.
   handling, app-side offline retry/discard behavior, and mobile release evidence
   runbooks. It does not own Shopify data, route assignment authority,
   proof-media metadata persistence, or object-storage credentials.
+- Native Push installations belong to the global `DriverAccount`, not to a
+  Store-specific driver reference or a route-scoped access token. Registration
+  and logout revocation use account bearer access.
+- Route Push is advisory and contains only opaque route identity and event
+  metadata. Receipt or tap always refreshes the server-authoritative route list
+  before navigation, and must not silently replace another active route.
 - Android direct releases use `com.evnsolution.clever.routes`. The legacy
   `com.evns.cleverdriverapp` identity cannot be upgraded in place, so affected
   builds must receive a server-owned reinstall guide, sign in to the new app,
