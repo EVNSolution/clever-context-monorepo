@@ -18,7 +18,7 @@ repository.
 | target_runtime_docs | <https://github.com/EVNSolution/clever-route-server/blob/main/apps/delivery-api/README.md> and <https://github.com/EVNSolution/clever-route-server/tree/main/apps/delivery-api/docs> |
 | deploy_lineage | Node/TypeScript Fastify service with Prisma/PostgreSQL, deployed as the delivery API runtime paired with the Shopify embedded app |
 | related_shopify_admin | <https://github.com/EVNSolution/shopify-clever/tree/main/apps/shopify-app> |
-| related_mobile_runtime | <https://github.com/EVNSolution/clever-driver-app> |
+| related_mobile_runtime | <https://github.com/EVNSolution/clever-routes-app> |
 
 ## Interpretation
 

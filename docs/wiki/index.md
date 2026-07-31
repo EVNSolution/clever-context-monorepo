@@ -11,6 +11,7 @@ summary를 올리지 않는다. 빠른 탐색이 필요하면 아래 완료 문�
 - [`docs/root/clever-msa-platform-workspace.md`](../root/clever-msa-platform-workspace.md)
 - [`docs/root/monorepo-write-pointers.md`](../root/monorepo-write-pointers.md)
 - [`docs/templates/index.md`](../templates/index.md)
+- [`docs/services/mobile-app-identities.md`](../services/mobile-app-identities.md)
 
 제품, platform, runtime slice 사실은 소유 repo의 정본 문서를 직접 본다.
 
@@ -20,6 +21,7 @@ summary를 올리지 않는다. 빠른 탐색이 필요하면 아래 완료 문�
 GitHub 정본 문서에서 확인한다.
 
 - Service pointer table: <https://github.com/EVNSolution/clever-context-monorepo/blob/main/docs/services/index.md>
-- Mobile driver app: <https://github.com/EVNSolution/clever-context-monorepo/blob/main/docs/services/clever-driver-app/index.md>
+- Mobile app identity registry: <https://github.com/EVNSolution/clever-context-monorepo/blob/main/docs/services/mobile-app-identities.md>
+- Mobile routes app: <https://github.com/EVNSolution/clever-context-monorepo/blob/main/docs/services/clever-routes-app/index.md>
 - Shopify embedded app: <https://github.com/EVNSolution/clever-context-monorepo/blob/main/docs/services/clever-shopify-app/index.md>
 - Delivery API server: <https://github.com/EVNSolution/clever-context-monorepo/blob/main/docs/services/clever-delivery-server/index.md>

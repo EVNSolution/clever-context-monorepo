@@ -1,8 +1,8 @@
-# clever-driver-app Context Pointer
+# clever-routes-app Context Pointer
 
 ## Purpose
 
-This file records the canonical context pointer for the `clever-driver-app`
+This file records the canonical context pointer for the `clever-routes-app`
 mobile runtime. It does not copy runtime proof, store evidence, secrets,
 environment values, or release artifacts from the target repository.
 
@@ -10,20 +10,23 @@ environment values, or release artifacts from the target repository.
 
 | Field | Value |
 | --- | --- |
-| service_id | `clever-driver-app` |
-| owner_repo | <https://github.com/EVNSolution/clever-driver-app> |
-| runtime_source | <https://github.com/EVNSolution/clever-driver-app/tree/dev> |
-| product_scope | native iPhone/Android delivery driver app for invite-based access, driver identity, consent, assigned-route view, active-delivery location tracking, proof capture, offline retry, and route completion cleanup |
-| current_mvp_anchor | <https://github.com/EVNSolution/clever-change-control/issues/145>, <https://github.com/EVNSolution/clever-driver-app/issues/72>, <https://github.com/EVNSolution/clever-driver-app/issues/73> |
+| service_id | `clever-routes-app` |
+| owner_repo | <https://github.com/EVNSolution/clever-routes-app> |
+| runtime_source | <https://github.com/EVNSolution/clever-routes-app/tree/dev> |
+| display_name | `CLEVER Routes` |
+| identity_registry | <https://github.com/EVNSolution/clever-context-monorepo/blob/main/docs/services/mobile-app-identities.md> |
+| product_scope | native iPhone/Android Shopify delivery app for invite-based access, driver identity, consent, assigned-route view, active-delivery location tracking, proof capture, offline retry, and route completion cleanup |
+| current_mvp_anchor | <https://github.com/EVNSolution/clever-change-control/issues/145>, <https://github.com/EVNSolution/clever-routes-app/issues/72>, <https://github.com/EVNSolution/clever-routes-app/issues/73> |
 | context_issue | <https://github.com/EVNSolution/clever-context-monorepo/issues/23> |
-| target_runtime_docs | <https://github.com/EVNSolution/clever-driver-app/blob/dev/README.md> and <https://github.com/EVNSolution/clever-driver-app/tree/dev/docs> |
+| target_runtime_docs | <https://github.com/EVNSolution/clever-routes-app/blob/dev/README.md> and <https://github.com/EVNSolution/clever-routes-app/tree/dev/docs> |
 | related_backend | <https://github.com/EVNSolution/clever-route-server/tree/main/apps/delivery-api> |
 | related_shopify_admin | <https://github.com/EVNSolution/shopify-clever/tree/main/apps/shopify-app> |
 | platform_lineage | Expo / React Native native iOS and Android app bootstrap under CLEVER target-repo workflow |
 
 ## Interpretation
 
-- The app is a native mobile runtime, not a PWA/web-first driver surface,
+- The app is the `CLEVER Routes` Shopify delivery mobile runtime and is a native
+  mobile runtime, not a PWA/web-first driver surface,
   because active delivery needs OS location permissions, foreground/background
   tracking behavior, secure token storage, camera/photo/barcode proof capture,
   and controlled distribution evidence.
@@ -65,12 +68,12 @@ environment values, or release artifacts from the target repository.
 
 ## Source-of-truth pointers
 
-- Target repository: <https://github.com/EVNSolution/clever-driver-app>
-- Runtime source branch: <https://github.com/EVNSolution/clever-driver-app/tree/dev>
-- Target repository README: <https://github.com/EVNSolution/clever-driver-app/blob/dev/README.md>
-- Product brief and scenario plan: <https://github.com/EVNSolution/clever-driver-app/blob/dev/docs/project-brief.md>
-- App-side API/runtime flow: <https://github.com/EVNSolution/clever-driver-app/blob/dev/docs/route-access-flow.md>
+- Target repository: <https://github.com/EVNSolution/clever-routes-app>
+- Runtime source branch: <https://github.com/EVNSolution/clever-routes-app/tree/dev>
+- Target repository README: <https://github.com/EVNSolution/clever-routes-app/blob/dev/README.md>
+- Product brief and scenario plan: <https://github.com/EVNSolution/clever-routes-app/blob/dev/docs/project-brief.md>
+- App-side API/runtime flow: <https://github.com/EVNSolution/clever-routes-app/blob/dev/docs/route-access-flow.md>
 - Driver account authentication and profile contract: <https://github.com/EVNSolution/clever-route-server/blob/main/apps/delivery-api/docs/api/driver-auth.md>
-- Release readiness and evidence gates: <https://github.com/EVNSolution/clever-driver-app/blob/dev/docs/release-readiness.md>
-- Physical-device smoke runbook: <https://github.com/EVNSolution/clever-driver-app/blob/dev/docs/physical-device-smoke-runbook.md>
-- Expo app identity config: <https://github.com/EVNSolution/clever-driver-app/blob/dev/app.json>
+- Release readiness and evidence gates: <https://github.com/EVNSolution/clever-routes-app/blob/dev/docs/release-readiness.md>
+- Physical-device smoke runbook: <https://github.com/EVNSolution/clever-routes-app/blob/dev/docs/physical-device-smoke-runbook.md>
+- Expo app identity config: <https://github.com/EVNSolution/clever-routes-app/blob/dev/app.json>
