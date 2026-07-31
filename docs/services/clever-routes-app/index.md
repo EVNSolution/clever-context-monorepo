@@ -39,6 +39,14 @@ environment values, or release artifacts from the target repository.
   handling, app-side offline retry/discard behavior, and mobile release evidence
   runbooks. It does not own Shopify data, route assignment authority,
   proof-media metadata persistence, or object-storage credentials.
+- Android direct releases use `com.evnsolution.clever.routes`. The legacy
+  `com.evns.cleverdriverapp` identity cannot be upgraded in place, so affected
+  builds must receive a server-owned reinstall guide, sign in to the new app,
+  verify route access, and then remove the legacy app.
+- Current builds discover releases through `/routes-app/release/android`.
+  Legacy builds retain `/driver-app/release/android` compatibility during the
+  identity migration; the backing package URL remains server-owned rather than
+  part of the mobile API contract.
 - Stop payment collection context is read-only in the app. The paired delivery
   API supplies the payment method, exact order total and currency, and
   normalized payment status; the app presents those values in stop details and

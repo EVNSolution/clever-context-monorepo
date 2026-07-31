@@ -39,6 +39,15 @@ repository.
   assigned-route reads, driver events, proof-media upload metadata/storage,
   scoped proof-media read access, scan rejection hooks, monitoring hooks, and
   retention cleanup evidence.
+- The server owns the public CLEVER Routes direct-distribution boundary:
+  `/routes-app` and `/routes-app/release/android` for current builds, with
+  `/driver-app` compatibility for the legacy Android identity. The release
+  manifest declares the canonical and replaced package IDs, while the backing
+  package URL remains hidden behind the server-owned install/download flow.
+- Package-identity migrations deploy the compatible server routes before
+  publishing the replacement package as the latest required release. This
+  preserves update discovery for installed legacy builds that cannot upgrade
+  in place.
 - Assigned-route reads provide the server-authoritative payment method, exact
   order total and currency, and normalized payment status required for cash or
   transfer collection decisions. The driver app consumes this context as
