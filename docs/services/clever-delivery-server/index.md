@@ -62,6 +62,13 @@ repository.
 - A driver's phone-owned account name is global across shops. A Shopify store's
   `Driver.displayName` is a separate merchant-scoped alias; the server does not
   synchronize or backfill either value into the other.
+- CLEVER Routes Android release metadata uses a product-specific PostgreSQL
+  artifact history and current pointer. Environment values are an empty-registry
+  bootstrap fallback, not the steady-state release control plane.
+- The server keeps stable `/routes-app` and legacy `/driver-app` public
+  contracts while hiding the backing artifact URL. SSM invokes the publisher in
+  the running container; it does not store release state and does not require a
+  server restart for later APK promotions.
 - Detailed API contracts, database schema, exact runtime environment variables,
   secret categories, object-storage provider settings, deployment commands, and
   proof/evidence records remain in the target repository and change-control.
