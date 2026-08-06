@@ -16,8 +16,8 @@ environment values, or release artifacts from the target repository.
 | display_name | `CLEVER Routes` |
 | identity_registry | <https://github.com/EVNSolution/clever-context-monorepo/blob/main/docs/services/mobile-app-identities.md> |
 | product_scope | native iPhone/Android Shopify delivery app for invite-based access, driver identity, consent, assigned-route view, active-delivery location tracking, proof capture, offline retry, and route completion cleanup |
-| current_mvp_anchor | <https://github.com/EVNSolution/clever-change-control/issues/145>, <https://github.com/EVNSolution/clever-change-control/issues/242>, <https://github.com/EVNSolution/clever-change-control/issues/249>, <https://github.com/EVNSolution/clever-routes-app/issues/72>, <https://github.com/EVNSolution/clever-routes-app/issues/73>, <https://github.com/EVNSolution/clever-routes-app/issues/173>, <https://github.com/EVNSolution/clever-routes-app/issues/179> |
-| context_issue | <https://github.com/EVNSolution/clever-context-monorepo/issues/23>, <https://github.com/EVNSolution/clever-context-monorepo/issues/42> |
+| current_mvp_anchor | <https://github.com/EVNSolution/clever-change-control/issues/145>, <https://github.com/EVNSolution/clever-change-control/issues/242>, <https://github.com/EVNSolution/clever-change-control/issues/249>, <https://github.com/EVNSolution/clever-change-control/issues/250>, <https://github.com/EVNSolution/clever-routes-app/issues/72>, <https://github.com/EVNSolution/clever-routes-app/issues/73>, <https://github.com/EVNSolution/clever-routes-app/issues/173>, <https://github.com/EVNSolution/clever-routes-app/issues/179>, <https://github.com/EVNSolution/clever-routes-app/issues/182> |
+| context_issue | <https://github.com/EVNSolution/clever-context-monorepo/issues/23>, <https://github.com/EVNSolution/clever-context-monorepo/issues/42>, <https://github.com/EVNSolution/clever-context-monorepo/issues/44> |
 | target_runtime_docs | <https://github.com/EVNSolution/clever-routes-app/blob/dev/README.md> and <https://github.com/EVNSolution/clever-routes-app/tree/dev/docs> |
 | related_backend | <https://github.com/EVNSolution/clever-route-server/tree/main/apps/delivery-api> |
 | related_shopify_admin | <https://github.com/EVNSolution/shopify-clever/tree/main/apps/shopify-app> |
@@ -53,9 +53,21 @@ environment values, or release artifacts from the target repository.
   Legacy builds retain `/driver-app/release/android` compatibility during the
   identity migration; the backing package URL remains server-owned rather than
   part of the mobile API contract.
-- The reviewed Android release command verifies official clean source, APK
-  identity, monotonically increasing `versionCode`, checksum, and immutable
-  artifact naming before promotion.
+- The reviewed Android release command builds its fixed APK output directly
+  from the verified clean official commit, then binds that commit to the APK
+  checksum as release provenance. It also verifies APK identity, monotonically
+  increasing `versionCode`, and immutable artifact naming before promotion.
+- APK checksums, resumable artifact upload, and anonymous download verification
+  use streaming paths rather than whole-file memory buffers. Artifact reuse
+  requires the Drive-computed byte checksum, recorded checksum, and source
+  provenance to match. Source validation reads the live official remote head,
+  not a potentially stale local remote-tracking ref.
+- A retry after an unknown SSM result is a no-op success only when public
+  version, minimum supported version, stable install URL, and streamed APK
+  checksum all match the candidate.
+- SSM release publication resolves exactly one online managed instance through
+  the delivery-service tag and fails closed on zero, multiple, or offline
+  targets. Operators do not select an instance ID for normal publication.
 - PostgreSQL release metadata is authoritative after bootstrap. SSM is only the
   authenticated execution transport that invokes the publisher in the running
   server container; it does not store release state.
