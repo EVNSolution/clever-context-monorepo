@@ -16,8 +16,8 @@ environment values, or release artifacts from the target repository.
 | display_name | `CLEVER Routes` |
 | identity_registry | <https://github.com/EVNSolution/clever-context-monorepo/blob/main/docs/services/mobile-app-identities.md> |
 | product_scope | native iPhone/Android Shopify delivery app for invite-based access, driver identity, consent, assigned-route view, active-delivery location tracking, proof capture, offline retry, and route completion cleanup |
-| current_mvp_anchor | <https://github.com/EVNSolution/clever-change-control/issues/145>, <https://github.com/EVNSolution/clever-change-control/issues/242>, <https://github.com/EVNSolution/clever-change-control/issues/249>, <https://github.com/EVNSolution/clever-change-control/issues/250>, <https://github.com/EVNSolution/clever-routes-app/issues/72>, <https://github.com/EVNSolution/clever-routes-app/issues/73>, <https://github.com/EVNSolution/clever-routes-app/issues/173>, <https://github.com/EVNSolution/clever-routes-app/issues/179>, <https://github.com/EVNSolution/clever-routes-app/issues/182> |
-| context_issue | <https://github.com/EVNSolution/clever-context-monorepo/issues/23>, <https://github.com/EVNSolution/clever-context-monorepo/issues/42>, <https://github.com/EVNSolution/clever-context-monorepo/issues/44> |
+| current_mvp_anchor | <https://github.com/EVNSolution/clever-change-control/issues/145>, <https://github.com/EVNSolution/clever-change-control/issues/242>, <https://github.com/EVNSolution/clever-change-control/issues/249>, <https://github.com/EVNSolution/clever-change-control/issues/250>, <https://github.com/EVNSolution/clever-change-control/issues/251>, <https://github.com/EVNSolution/clever-routes-app/issues/72>, <https://github.com/EVNSolution/clever-routes-app/issues/73>, <https://github.com/EVNSolution/clever-routes-app/issues/173>, <https://github.com/EVNSolution/clever-routes-app/issues/179>, <https://github.com/EVNSolution/clever-routes-app/issues/182>, <https://github.com/EVNSolution/clever-routes-app/issues/184> |
+| context_issue | <https://github.com/EVNSolution/clever-context-monorepo/issues/23>, <https://github.com/EVNSolution/clever-context-monorepo/issues/42>, <https://github.com/EVNSolution/clever-context-monorepo/issues/44>, <https://github.com/EVNSolution/clever-context-monorepo/issues/46> |
 | target_runtime_docs | <https://github.com/EVNSolution/clever-routes-app/blob/dev/README.md> and <https://github.com/EVNSolution/clever-routes-app/tree/dev/docs> |
 | related_backend | <https://github.com/EVNSolution/clever-route-server/tree/main/apps/delivery-api> |
 | related_shopify_admin | <https://github.com/EVNSolution/shopify-clever/tree/main/apps/shopify-app> |
@@ -82,6 +82,16 @@ environment values, or release artifacts from the target repository.
 - Route lists use the server lifecycle labels `Ready`, `In progress`, and
   `Completed`. Assignment does not advance status; the driver's explicit start
   and completion actions record the corresponding lifecycle events.
+- The assigned-route contract exposes the route plan's nullable
+  `scheduledStartAt`. During Store Pickup, the app combines that server-owned
+  schedule with server route duration to show separate leave countdown, route
+  time, and estimated finish values immediately above `Pickup & Start Route`.
+  Missing or elapsed schedules fall back to leaving now; the app does not invent
+  a schedule or persist a second timing source. The driver API returns the
+  explicit route/route-scope timezone metadata when present, followed by the
+  route-grouping schedule timezone (`scheduledStartTimeZone`) and then the
+  single active commerce connection timezone; it must not silently format
+  local route clocks as UTC when a canonical route timezone is known.
 - The paired delivery API owns companies/shops, drivers, route assignments,
   consent records, driver events, proof-media metadata/storage contracts, and
   cleanup evidence. The driver app must use the server driver APIs rather than
