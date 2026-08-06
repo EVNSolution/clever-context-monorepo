@@ -16,8 +16,8 @@ environment values, or release artifacts from the target repository.
 | display_name | `CLEVER Routes` |
 | identity_registry | <https://github.com/EVNSolution/clever-context-monorepo/blob/main/docs/services/mobile-app-identities.md> |
 | product_scope | native iPhone/Android Shopify delivery app for invite-based access, driver identity, consent, assigned-route view, active-delivery location tracking, proof capture, offline retry, and route completion cleanup |
-| current_mvp_anchor | <https://github.com/EVNSolution/clever-change-control/issues/145>, <https://github.com/EVNSolution/clever-change-control/issues/242>, <https://github.com/EVNSolution/clever-routes-app/issues/72>, <https://github.com/EVNSolution/clever-routes-app/issues/73>, <https://github.com/EVNSolution/clever-routes-app/issues/173> |
-| context_issue | <https://github.com/EVNSolution/clever-context-monorepo/issues/23> |
+| current_mvp_anchor | <https://github.com/EVNSolution/clever-change-control/issues/145>, <https://github.com/EVNSolution/clever-change-control/issues/242>, <https://github.com/EVNSolution/clever-change-control/issues/249>, <https://github.com/EVNSolution/clever-routes-app/issues/72>, <https://github.com/EVNSolution/clever-routes-app/issues/73>, <https://github.com/EVNSolution/clever-routes-app/issues/173>, <https://github.com/EVNSolution/clever-routes-app/issues/179> |
+| context_issue | <https://github.com/EVNSolution/clever-context-monorepo/issues/23>, <https://github.com/EVNSolution/clever-context-monorepo/issues/42> |
 | target_runtime_docs | <https://github.com/EVNSolution/clever-routes-app/blob/dev/README.md> and <https://github.com/EVNSolution/clever-routes-app/tree/dev/docs> |
 | related_backend | <https://github.com/EVNSolution/clever-route-server/tree/main/apps/delivery-api> |
 | related_shopify_admin | <https://github.com/EVNSolution/shopify-clever/tree/main/apps/shopify-app> |
@@ -53,6 +53,15 @@ environment values, or release artifacts from the target repository.
   Legacy builds retain `/driver-app/release/android` compatibility during the
   identity migration; the backing package URL remains server-owned rather than
   part of the mobile API contract.
+- The reviewed Android release command verifies official clean source, APK
+  identity, monotonically increasing `versionCode`, checksum, and immutable
+  artifact naming before promotion.
+- PostgreSQL release metadata is authoritative after bootstrap. SSM is only the
+  authenticated execution transport that invokes the publisher in the running
+  server container; it does not store release state.
+- Publishing a later APK does not require rebuilding or restarting the server.
+  A server deployment is needed only when the registry schema or publisher
+  implementation itself changes.
 - Stop payment collection context is read-only in the app. The paired delivery
   API supplies the payment method, exact order total and currency, and
   normalized payment status; the app presents those values in stop details and
@@ -87,7 +96,7 @@ environment values, or release artifacts from the target repository.
 - Target repository README: <https://github.com/EVNSolution/clever-routes-app/blob/dev/README.md>
 - Product brief and scenario plan: <https://github.com/EVNSolution/clever-routes-app/blob/dev/docs/project-brief.md>
 - App-side API/runtime flow: <https://github.com/EVNSolution/clever-routes-app/blob/dev/docs/route-access-flow.md>
-- Driver account authentication and profile contract: <https://github.com/EVNSolution/clever-route-server/blob/main/apps/delivery-api/docs/api/driver-auth.md>
+- Driver account authentication and account profile contract: <https://github.com/EVNSolution/clever-route-server/blob/main/apps/delivery-api/docs/api/driver-auth.md>
 - Release readiness and evidence gates: <https://github.com/EVNSolution/clever-routes-app/blob/dev/docs/release-readiness.md>
 - Physical-device smoke runbook: <https://github.com/EVNSolution/clever-routes-app/blob/dev/docs/physical-device-smoke-runbook.md>
 - Expo app identity config: <https://github.com/EVNSolution/clever-routes-app/blob/dev/app.json>
