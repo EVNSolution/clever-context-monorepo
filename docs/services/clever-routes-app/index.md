@@ -16,8 +16,8 @@ environment values, or release artifacts from the target repository.
 | display_name | `CLEVER Routes` |
 | identity_registry | <https://github.com/EVNSolution/clever-context-monorepo/blob/main/docs/services/mobile-app-identities.md> |
 | product_scope | native iPhone/Android Shopify delivery app for invite-based access, driver identity, consent, assigned-route view, active-delivery location tracking, proof capture, offline retry, and route completion cleanup |
-| current_mvp_anchor | <https://github.com/EVNSolution/clever-change-control/issues/145>, <https://github.com/EVNSolution/clever-change-control/issues/242>, <https://github.com/EVNSolution/clever-change-control/issues/249>, <https://github.com/EVNSolution/clever-change-control/issues/250>, <https://github.com/EVNSolution/clever-change-control/issues/251>, <https://github.com/EVNSolution/clever-routes-app/issues/72>, <https://github.com/EVNSolution/clever-routes-app/issues/73>, <https://github.com/EVNSolution/clever-routes-app/issues/173>, <https://github.com/EVNSolution/clever-routes-app/issues/179>, <https://github.com/EVNSolution/clever-routes-app/issues/182>, <https://github.com/EVNSolution/clever-routes-app/issues/184> |
-| context_issue | <https://github.com/EVNSolution/clever-context-monorepo/issues/23>, <https://github.com/EVNSolution/clever-context-monorepo/issues/42>, <https://github.com/EVNSolution/clever-context-monorepo/issues/44>, <https://github.com/EVNSolution/clever-context-monorepo/issues/46> |
+| current_mvp_anchor | <https://github.com/EVNSolution/clever-change-control/issues/145>, <https://github.com/EVNSolution/clever-change-control/issues/242>, <https://github.com/EVNSolution/clever-change-control/issues/249>, <https://github.com/EVNSolution/clever-change-control/issues/250>, <https://github.com/EVNSolution/clever-change-control/issues/251>, <https://github.com/EVNSolution/clever-change-control/issues/265>, <https://github.com/EVNSolution/clever-routes-app/issues/72>, <https://github.com/EVNSolution/clever-routes-app/issues/73>, <https://github.com/EVNSolution/clever-routes-app/issues/173>, <https://github.com/EVNSolution/clever-routes-app/issues/179>, <https://github.com/EVNSolution/clever-routes-app/issues/182>, <https://github.com/EVNSolution/clever-routes-app/issues/184> |
+| context_issue | <https://github.com/EVNSolution/clever-context-monorepo/issues/23>, <https://github.com/EVNSolution/clever-context-monorepo/issues/42>, <https://github.com/EVNSolution/clever-context-monorepo/issues/44>, <https://github.com/EVNSolution/clever-context-monorepo/issues/46>, <https://github.com/EVNSolution/clever-context-monorepo/issues/48> |
 | target_runtime_docs | <https://github.com/EVNSolution/clever-routes-app/blob/dev/README.md> and <https://github.com/EVNSolution/clever-routes-app/tree/dev/docs> |
 | related_backend | <https://github.com/EVNSolution/clever-route-server/tree/main/apps/delivery-api> |
 | related_shopify_admin | <https://github.com/EVNSolution/shopify-clever/tree/main/apps/shopify-app> |
@@ -39,6 +39,19 @@ environment values, or release artifacts from the target repository.
   handling, app-side offline retry/discard behavior, and mobile release evidence
   runbooks. It does not own Shopify data, route assignment authority,
   proof-media metadata persistence, or object-storage credentials.
+- Ordered workflow and proof work is persisted as recoverable local evidence.
+  Queue admission or device-local progress never means the server applied the
+  event. Stable client event identity, ordered retry, bounded backoff, and the
+  server receipt contract determine whether work is confirmed, rejected, or
+  still requires reconciliation.
+- Route completion remains pending until the server confirms the completion
+  event. An unknown receipt, quarantined head event, assignment change, or route
+  version mismatch preserves the evidence and blocks blind later-event replay;
+  sign-out/reset seals reconciliation evidence rather than silently deleting it.
+- The app reports synchronization heartbeat and queue health as advisory device
+  evidence. GPS state, Device progress, Server confirmation, Sync health, Gap,
+  and Alert remain independent Pills with no middle-dot or prose separator.
+  Location near the final stop is never a completion signal.
 - Native Push installations belong to the global `DriverAccount`, not to a
   Store-specific driver reference or a route-scoped access token. Registration
   and logout revocation use account bearer access.
@@ -100,6 +113,10 @@ environment values, or release artifacts from the target repository.
   `DriverAccount` bearer through the paired delivery API, never a Store route
   token. A deletion request is an account-scoped audit request, not immediate
   deletion of route, proof, or consent history.
+- Physical iPhone/Android evidence, signed distribution authority, client
+  adoption, and the full observation window remain external release gates.
+  Current results and approval state belong in change-control and the external
+  evidence store, not this context pointer.
 
 ## Do not store here
 
@@ -118,6 +135,8 @@ environment values, or release artifacts from the target repository.
 - Target repository README: <https://github.com/EVNSolution/clever-routes-app/blob/dev/README.md>
 - Product brief and scenario plan: <https://github.com/EVNSolution/clever-routes-app/blob/dev/docs/project-brief.md>
 - App-side API/runtime flow: <https://github.com/EVNSolution/clever-routes-app/blob/dev/docs/route-access-flow.md>
+- Ordered driver-event admission and receipt contract: <https://github.com/EVNSolution/clever-route-server/blob/main/apps/delivery-api/docs/api/driver-event-contract-v2.md>
+- Server synchronization-health, alert, and evidence-retention runbook: <https://github.com/EVNSolution/clever-route-server/blob/main/docs/observability/driver-event-contract-cloudwatch.md>
 - Driver account authentication and account profile contract: <https://github.com/EVNSolution/clever-route-server/blob/main/apps/delivery-api/docs/api/driver-auth.md>
 - Release readiness and evidence gates: <https://github.com/EVNSolution/clever-routes-app/blob/dev/docs/release-readiness.md>
 - Physical-device smoke runbook: <https://github.com/EVNSolution/clever-routes-app/blob/dev/docs/physical-device-smoke-runbook.md>
