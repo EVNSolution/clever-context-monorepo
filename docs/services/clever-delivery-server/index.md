@@ -14,11 +14,13 @@ repository.
 | service_id | `clever-delivery-server` |
 | owner_repo | <https://github.com/EVNSolution/clever-route-server> |
 | runtime_source | <https://github.com/EVNSolution/clever-route-server/tree/main/apps/delivery-api> |
-| product_scope | delivery data server and driver API for shops, orders, routes, drivers, invite/auth flows, account profiles, consent records, driver events, proof-media metadata/storage contracts, and retention cleanup |
+| product_scope | delivery data server and driver API for shops, orders, routes, drivers, invite/auth flows, account profiles, consent records, ordered driver-event evidence, synchronization health, operational alerts, customer-notification evidence, the durable Shopify webhook inbox, proof-media metadata/storage contracts, and retention cleanup |
 | target_runtime_docs | <https://github.com/EVNSolution/clever-route-server/blob/main/apps/delivery-api/README.md> and <https://github.com/EVNSolution/clever-route-server/tree/main/apps/delivery-api/docs> |
 | deploy_lineage | Node/TypeScript Fastify service with Prisma/PostgreSQL, deployed as the delivery API runtime paired with the Shopify embedded app |
 | related_shopify_admin | <https://github.com/EVNSolution/shopify-clever/tree/main/apps/shopify-app> |
 | related_mobile_runtime | <https://github.com/EVNSolution/clever-routes-app> |
+| context_issue | <https://github.com/EVNSolution/clever-context-monorepo/issues/48> |
+| change_control | <https://github.com/EVNSolution/clever-change-control/issues/265> |
 
 ## Interpretation
 
@@ -39,6 +41,32 @@ repository.
   assigned-route reads, driver events, proof-media upload metadata/storage,
   scoped proof-media read access, scan rejection hooks, monitoring hooks, and
   retention cleanup evidence.
+- An ordered Driver v2 attempt is durable evidence before business validation.
+  Device-local queueing or progress is not server completion. Only a committed
+  event or an `APPLIED` event receipt confirms the transition; unknown receipts
+  remain reconciliation work, and assignment/version conflicts stop blind replay.
+- Device heartbeat and queue counters are synchronization evidence, not route
+  lifecycle authority. The server owns synchronization-health projection,
+  mismatch detection, and operational alerts while keeping GPS, device progress,
+  server-confirmed progress, and route lifecycle as independent facts.
+- The Delivery API is the only durable Shopify webhook inbox. The Shopify edge
+  authenticates session-free webhook requests and forwards the authenticated
+  webhook body. The Delivery API alone minimizes the persisted replay envelope;
+  terminal tombstones preserve duplicate suppression, while retryable, leased,
+  failed, and dead-letter work is not removed by terminal retention.
+- The Delivery API owns customer-notification facts, render/idempotency state,
+  delivery attempts, retry leases, and provider-send evidence. Automatic sending
+  remains disabled unless the separately governed consent, readiness,
+  idempotency, retry, and kill-switch gates authorize it. Queued or overdue facts
+  are evidence to reconcile, not permission to send.
+- Operational logs and monitors use allowlisted identifiers, stable outcome codes,
+  and aggregate counts. They exclude customer payloads, tokens, coordinates,
+  free-form provider errors, and client network identity. CloudWatch retention and
+  database evidence cleanup are separate controls; unresolved evidence remains.
+- Ordered Driver v2 is additive: the compatible server contract and durable
+  evidence schema roll out before Driver and admin consumers. A consumer rollback
+  comes first; the server keeps legacy admission and additive evidence readable
+  until adoption and the full observation-window gate authorize later removal.
 - The global `DriverAccount` owns native Push installations. The server accepts
   installation registration and revocation only through account bearer access,
   while Store-specific driver references remain route-assignment metadata.
@@ -69,6 +97,15 @@ repository.
   contracts while hiding the backing artifact URL. SSM invokes the publisher in
   the running container; it does not store release state and does not require a
   server restart for later APK promotions.
+- Production rollout is a manual, exact-CI-gated SSM operation with
+  digest-addressed current and rollback image pointers. Runtime rollback restores
+  the previous image selection; it is not a database rollback, so schema-affecting
+  releases require an explicit compatibility or restore/forward-fix decision.
+- Physical Driver validation, client adoption, the seven-day full-invariant
+  observation window, email reconciliation authorization, and alert-notification
+  SNS owner/subscription approval remain release/change-control gates. Their
+  current evidence belongs in the linked change-control issue rather than this
+  context pointer.
 - Detailed API contracts, database schema, exact runtime environment variables,
   secret categories, object-storage provider settings, deployment commands, and
   proof/evidence records remain in the target repository and change-control.
@@ -96,5 +133,13 @@ repository.
 - Driver route access contract: <https://github.com/EVNSolution/clever-route-server/blob/main/apps/delivery-api/docs/api/driver-route-access.md>
 - Driver assigned route contract: <https://github.com/EVNSolution/clever-route-server/blob/main/apps/delivery-api/docs/api/driver-assigned-route.md>
 - Driver proof-media API and storage contract: <https://github.com/EVNSolution/clever-route-server/blob/main/apps/delivery-api/docs/api/driver-proof-media.md>
+- Ordered driver-event admission, evidence, and receipt contract: <https://github.com/EVNSolution/clever-route-server/blob/main/apps/delivery-api/docs/api/driver-event-contract-v2.md>
+- Shopify webhook replay, tombstone, and retention contract: <https://github.com/EVNSolution/clever-route-server/blob/main/apps/delivery-api/docs/api/shopify-webhook-retention.md>
+- Customer-notification outbox contract: <https://github.com/EVNSolution/clever-route-server/blob/main/apps/delivery-api/docs/api/admin-route-plans.md>
+- Customer-notification ownership and activation boundary: <https://github.com/EVNSolution/clever-route-server/blob/main/docs/adr/2026-08-05-customer-notification-settings-ownership.md>
+- Synchronization evidence, CloudWatch, and retention runbook: <https://github.com/EVNSolution/clever-route-server/blob/main/docs/observability/driver-event-contract-cloudwatch.md>
+- Production health, invariant, alert, and email-outbox monitor runbook: <https://github.com/EVNSolution/clever-route-server/blob/main/docs/observability/dsv-g007-operations.md>
+- CI/deploy validation boundary: <https://github.com/EVNSolution/clever-route-server/blob/main/docs/deployment/route-ops-ci-deploy-validation.md>
+- Manual SSM deploy and rollback runbook: <https://github.com/EVNSolution/clever-route-server/blob/main/docs/deployment/route-ops-simple-ssm-deploy.md>
 - Location/proof data handling: <https://github.com/EVNSolution/clever-route-server/blob/main/apps/delivery-api/docs/compliance/location-data-handling.md>
 - EC2/EBS deployment notes: <https://github.com/EVNSolution/clever-route-server/blob/main/apps/delivery-api/docs/deployment/ec2-ebs.md>

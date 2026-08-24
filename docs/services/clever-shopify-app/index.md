@@ -19,6 +19,8 @@ the target repository.
 | paired_delivery_api | <https://github.com/EVNSolution/clever-route-server/tree/main/apps/delivery-api> |
 | related_mobile_runtime | <https://github.com/EVNSolution/clever-routes-app> |
 | deploy_lineage | React Router Shopify embedded app, Prisma session storage, Shopify CLI config split for production/public and dev/custom-store runtimes |
+| context_issue | <https://github.com/EVNSolution/clever-context-monorepo/issues/48> |
+| change_control | <https://github.com/EVNSolution/clever-change-control/issues/265> |
 
 ## Interpretation
 
@@ -36,6 +38,22 @@ the target repository.
 - The route admin surface shows every materialized child immediately and uses
   `Ready`, `In progress`, and `Completed` as the canonical execution labels;
   legacy pre-execution statuses are presented as `Ready`.
+- Operational status uses independent Pills, one source and one claim per Pill.
+  GPS, Device, Server, Sync, Gap, and Alert facts are not joined with middle dots
+  or other punctuation separators. GPS proximity and device-local progress never
+  imply server-confirmed completion, and unavailable evidence remains explicit.
+- Current-position presentation keeps physical location, source freshness,
+  device progress, and server-confirmed stop results separate. A material gap or
+  completed route with unresolved results is an explicit operational warning,
+  not a detail hidden behind an otherwise healthy lifecycle label.
+- Shopify webhook routes own session-free HMAC admission at the public edge, but
+  they do not become a second durable inbox. Durable replay, leasing, duplicate
+  suppression, terminal tombstones, and reconciliation remain in the paired
+  Delivery API.
+- The embedded app may expose customer-notification settings and manual operator
+  actions through the authenticated Delivery API boundary. It does not infer
+  recipient data, bypass the canonical outbox, or treat queued facts as authority
+  to activate automatic sending.
 - `Driver.displayName` is a merchant/store-scoped operational alias. It is not
   the driver's phone-owned account name and must not update or backfill it.
 - The Shopify app must not become the long-term source of driver mobile runtime
@@ -44,6 +62,11 @@ the target repository.
 - Public production and dev/custom-store runtimes are intentionally split in the
   target repository so routine development does not mutate the production app
   configuration by accident.
+- Production, CLEVER Route, and K-food releases use the target repository's
+  manual deploy workflow. Publication is transaction-like: backup and migration
+  checks precede health promotion, current/previous pointers are published
+  atomically, and a failed candidate restores the prior runnable release without
+  claiming that application rollback reverses database changes.
 
 ## Do not store here
 
@@ -60,7 +83,11 @@ the target repository.
 - Monorepo README: <https://github.com/EVNSolution/shopify-clever/blob/main/README.md>
 - Shopify app runtime source: <https://github.com/EVNSolution/shopify-clever/tree/main/apps/shopify-app>
 - Shopify app README: <https://github.com/EVNSolution/shopify-clever/blob/main/apps/shopify-app/README.md>
+- Operational Pill grammar and alert hierarchy: <https://github.com/EVNSolution/shopify-clever/blob/main/DESIGN.md>
+- Manual EC2 release and rollback runbook: <https://github.com/EVNSolution/shopify-clever/blob/main/docs/runbooks/ec2-shopify-release-rollback.md>
+- One-server deployment ownership and runtime boundary: <https://github.com/EVNSolution/shopify-clever/blob/main/docs/deployment/clever-route-one-server-runtime-2026-05-16.md>
+- K-food installation/deployment pointer: <https://github.com/EVNSolution/shopify-clever/blob/main/docs/deployment/kfood-cleverroute-dev-install.md>
 - Naming guide: <https://github.com/EVNSolution/shopify-clever/blob/main/NAMING.md>
 - Production Shopify config: <https://github.com/EVNSolution/shopify-clever/blob/main/apps/shopify-app/shopify.app.toml>
 - Dev/custom Shopify config: <https://github.com/EVNSolution/shopify-clever/blob/main/apps/shopify-app/shopify.app.dev.toml>
-- App Store asset packet entry: <https://github.com/EVNSolution/shopify-clever/blob/main/docs/shopify-app-store-assets/README.md>
+- Protected customer data field map: <https://github.com/EVNSolution/shopify-clever/blob/main/docs/shopify-protected-customer-data-field-map.md>
