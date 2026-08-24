@@ -50,9 +50,10 @@ repository.
   mismatch detection, and operational alerts while keeping GPS, device progress,
   server-confirmed progress, and route lifecycle as independent facts.
 - The Delivery API is the only durable Shopify webhook inbox. The Shopify edge
-  authenticates session-free webhook requests and forwards a minimized replay
-  identity; terminal tombstones preserve duplicate suppression, while retryable,
-  leased, failed, and dead-letter work is not removed by terminal retention.
+  authenticates session-free webhook requests and forwards the authenticated
+  webhook body. The Delivery API alone minimizes the persisted replay envelope;
+  terminal tombstones preserve duplicate suppression, while retryable, leased,
+  failed, and dead-letter work is not removed by terminal retention.
 - The Delivery API owns customer-notification facts, render/idempotency state,
   delivery attempts, retry leases, and provider-send evidence. Automatic sending
   remains disabled unless the separately governed consent, readiness,
